@@ -5,9 +5,13 @@ import {setupListeners} from '@reduxjs/toolkit/query/react'
 // Reducers.
 import authReducer from './slices/authReducer'
 import cartReducer from './slices/cartReducer'
+import orderReducer from './slices/orderReducer'
 
 // Services.
-import {baseApi} from './api/baseApi'
+import {productApi} from './api/product'
+import {orderApi} from './api/order'
+import {userApi} from './api/user'
+import {paymentApi} from './api/payment'
 
 /**
  * Creates a store and includes all the slices as reducers.
@@ -16,10 +20,20 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     cart: cartReducer,
-    [baseApi.reducerPath]: baseApi.reducer,
+    order: orderReducer,
+    [productApi.reducerPath]: productApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
   },
   devTools: process.env.NODE_ENV === 'development',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      productApi.middleware,
+      orderApi.middleware,
+      userApi.middleware,
+      paymentApi.middleware
+    ),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

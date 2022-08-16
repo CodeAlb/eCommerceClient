@@ -24,6 +24,10 @@ const ProductGrid = ({
   skeletons = 8,
   withSidebar = false,
 }: ProductGridProps) => {
+  if (!isLoading && data?.length === 0) {
+    return null
+  }
+
   return (
     <div className={cn(css.wrapper, className, withSidebar ? css.threePerRow : css.fourPerRow)}>
       {isLoading

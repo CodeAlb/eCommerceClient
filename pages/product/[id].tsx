@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {useGetProductQuery} from '../../store/services/product'
+import {useGetProductQuery} from '../../store/api/baseApi'
 import {GetStaticPaths, GetStaticProps, NextPage} from 'next'
 import ProductDescription from '../../components/product/ProductDescription'
 import ProductReviews from '../../components/product/ProductReviews'

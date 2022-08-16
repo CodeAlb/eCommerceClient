@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import {useCreateUserMutation} from '../../store/services/user'
+import {useCreateUserMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import Input, {PasswordInput} from '../fields/Input'
 

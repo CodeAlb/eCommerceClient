@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import {ReactNode} from 'react'
-import {dashboardNavLinks} from '../config/dashboardNav'
-import {getAuthState} from '../store/slices/authReducer'
-import {useSelector} from '../store/store'
+import { ReactNode } from 'react'
+import { dashboardNavLinks } from '../config/dashboardNav'
+import { getAuthState } from '../store/slices/authReducer'
+import { useSelector } from '../store/store'
 import ActiveLink from './hoc/ActiveLink'
 import MyAccount from './MyAccount'
 
@@ -11,15 +11,15 @@ type DashboardProps = {
 }
 
 const css = {
-  wrapper: 'min-h-screen',
+  wrapper: 'min-h-screen bg-gray-50',
   header: 'bg-black text-white fixed top-0 w-full z-20',
   headerInner: 'max-w-site mx-auto px-4 flex items-center justify-between h-12 sm:h-14',
   body: 'max-w-site mx-auto relative w-full grid md:min-h-screen md:grid-cols-12 pt-12 md:pt-14',
   sidebar:
-    'relative px-4 py-6 sm:py-8 md:pr-6 lg:pr-8 md:col-span-4 lg:col-span-3 bg-gray-100 md:py-10',
-  sidebarBg: 'absolute top-0 right-full h-full w-[50vw] bg-gray-100',
+    'relative px-4 py-6 sm:py-8 md:pr-6 lg:pr-8 md:col-span-4 lg:col-span-3 md:py-10',
+  sidebarBg: 'absolute top-0 right-full h-full w-[50vw]',
   content:
-    'px-4 py-6 sm:py-8 md:col-span-8 lg:col-span-9 md:w-full h-full text-black bg-white md:p-10 overflow-hidden',
+    'px-4 py-6 sm:py-8 md:col-span-8 lg:col-span-9 md:w-full h-full text-black md:p-10 overflow-hidden',
   footer: '',
   brand: 'flex items-center',
   brandLink: 'duration-150 hover:opacity-75 sm:text-lg font-medium uppercase',
@@ -33,11 +33,11 @@ const css = {
   menuItem: '',
   menuLink: 'py-2 sm:py-2.5 flex items-center font-medium rounded px-3',
   menuLinkOn: 'text-white bg-black',
-  menuLinkOff: 'text-gray-600 hover:text-black hover:bg-gray-50 duration-150',
+  menuLinkOff: 'text-gray-600 hover:text-black hover:bg-gray-100 duration-150',
   menuLinkIcon: 'w-5 sm:w-6 mr-3 sm:mr-3.5 md:mr-4',
 }
 
-const MapLinkIcon = ({path}: {path: string}) => {
+const MapLinkIcon = ({ path }: { path: string }) => {
   switch (path) {
     case '/admin/products':
       return (
@@ -127,8 +127,8 @@ const MapLinkIcon = ({path}: {path: string}) => {
   }
 }
 
-const Dashboard = ({children}: DashboardProps) => {
-  const {user} = useSelector(getAuthState)
+const Dashboard = ({ children }: DashboardProps) => {
+  const { user } = useSelector(getAuthState)
 
   return (
     <div className={css.wrapper}>
@@ -148,7 +148,7 @@ const Dashboard = ({children}: DashboardProps) => {
         <aside className={css.sidebar}>
           <div className={css.sidebarBg} />
           <ul className={css.menu}>
-            {dashboardNavLinks.map(({title, path}, i) => (
+            {dashboardNavLinks.map(({ title, path }, i) => (
               <li key={i} className={css.menuItem}>
                 <ActiveLink
                   exact={path === '/admin'}

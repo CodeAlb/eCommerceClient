@@ -25,6 +25,7 @@ export interface IProduct {
 export type IProductPrice = [number, number]
 
 export interface IProductReview {
+  _id: string
   user: {
     name: string
     _id: string

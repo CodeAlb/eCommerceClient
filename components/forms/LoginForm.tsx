@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import {useLoginUserMutation} from '../../store/services/user'
+import {useLoginUserMutation} from '../../store/api/baseApi'
+import {IUser, IUserLogin} from '../../types/user'
 import {cn} from '../../utils/helpers'
 import Input, {PasswordInput} from '../fields/Input'
 
@@ -29,9 +30,9 @@ const LoginForm = () => {
     handleSubmit,
     watch,
     formState: {errors},
-  } = useForm()
+  } = useForm<IUserLogin>()
 
-  const sendFormData = (data: any) => {
+  const sendFormData = (data: IUserLogin) => {
     if (!isLoading) {
       loginUser(data)
     }

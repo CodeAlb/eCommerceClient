@@ -1,17 +1,20 @@
 import {GetStaticProps} from 'next'
-import DataTable from '../../components/DataTable'
 import {ArrowRightIcon} from '../../components/Svg'
-import {useGetAllOrdersQuery} from '../../store/api/baseApi'
-import {cn, numToPrice, tw} from '../../utils/helpers'
+import Hero from '../../components/elements/Hero'
+import {useGetMyOrdersQuery} from '../../store/api/baseApi'
+import {cn, numToPrice} from '../../utils/helpers'
+import DataTable from '../../components/DataTable'
 
-const css = tw({
-  title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
+const css = {
+  main: 'pb-12 sm:pb-16',
+  body: 'max-w-4xl px-4 mx-auto',
+  headline: 'max-w-lg mx-auto px-4 mb-8 sm:mb-10 md:mb-14 space-y-6 sm:space-y-8 md:space-y-10',
+  title: 'text-2xl sm:text-3xl md:text-4xl font-medium text-center uppercase',
   actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
   status: 'uppercase font-medium text-xs inline-flex items-center px-2 py-1 rounded text-white',
   statusGreen: 'bg-green-600',
   statusRed: 'bg-orange-300',
-  body: '',
-})
+}
 
 const STRUCTURE = [
   {
@@ -53,19 +56,19 @@ const QUERY_FILTER = {
   page: 1,
 }
 
-const AdminOrders = () => {
-  const {data, isLoading, isFetching} = useGetAllOrdersQuery()
-  const {orders} = data || {}
+const Orders = () => {
+  const {data, isLoading, isFetching} = useGetMyOrdersQuery()
+  const {orders, found} = data || {}
   const showLoader = isLoading || isFetching
 
   return (
-    <div>
-      <h1 className={cn(css.title)}>Orders</h1>
+    <div className={css.main}>
+      <Hero title="My Orders" />
       <div className={css.body}>
         <DataTable
           isLoading={showLoader}
           skeletons={QUERY_FILTER.limit}
-          basePath="/admin/orders"
+          basePath="/orders"
           data={orders as any}
           structure={STRUCTURE}
         />
@@ -78,9 +81,8 @@ export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
       withAuth: true,
-      userRoles: ['admin'],
     },
   }
 }
 
-export default AdminOrders
+export default Orders

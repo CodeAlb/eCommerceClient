@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import {useLoginUserMutation} from '../../store/services/user'
+import {useLoginUserMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import Input from '../fields/Input'
 

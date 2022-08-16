@@ -4,9 +4,9 @@ const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
   graph: 'grid gap-4 grid-cols-2 lg:grid-cols-4',
   graphHead:
-    'shadow-lg col-span-2 lg:col-span-4 border border-gray-200 rounded flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8',
+    'shadow-md bg-white col-span-2 lg:col-span-4 border border-gray-200 rounded flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8',
   graphItem:
-    'shadow-lg col-span-1 border border-gray-200 rounded flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8',
+    'shadow-md bg-white col-span-1 border border-gray-200 rounded flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8',
   graphNum: 'text-3xl sm:text-4xl md:text-5xl font-medium mb-1 sm:mb-2 md:mb-3',
   graphLabel: 'text-xs text-gray-500 sm:text-sm font-medium uppercase',
 }

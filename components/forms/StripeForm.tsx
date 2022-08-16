@@ -7,8 +7,7 @@ import {FormEvent, useEffect, useRef, useState} from 'react'
 import {useRouter} from 'next/router'
 import {getSessionStorage} from '../../utils/sessionStorage'
 import {cn, numToPrice} from '../../utils/helpers'
-import {useCreateOrderMutation} from '../../store/services/order'
-import {useStripePaymentMutation} from '../../store/services/payment'
+import {useCreateOrderMutation, useStripePaymentMutation} from '../../store/api/baseApi'
 
 const CARD_ELEMENT_OPTIONS = {
   style: {

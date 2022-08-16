@@ -8,7 +8,7 @@ import {
 } from '../store/slices/cartReducer'
 import {useDispatch, useSelector} from '../store/store'
 import {cn} from '../utils/helpers'
-import {ChevronTopIcon, CloseIcon, MinusIcon, PlusIcon} from './Svg'
+import {CloseIcon, MinusIcon, PlusIcon} from './Svg'
 
 type CartProductsProps = {
   isModal?: boolean

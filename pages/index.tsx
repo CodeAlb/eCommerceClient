@@ -4,7 +4,7 @@ import Link from 'next/link'
 import MainHero from '../components/elements/MainHero'
 import ProductGrid from '../components/product/ProductGrid'
 import {ArrowNarrowRightIcon} from '../components/Svg'
-import {useGetAllProductsQuery} from '../store/services/product'
+import {useGetAllProductsQuery} from '../store/api/baseApi'
 
 const css = {
   main: 'py-12 sm:py-20',
@@ -22,7 +22,7 @@ const QUERY_FILTER = {
 }
 
 const HomePage: NextPage = () => {
-  const {data, isLoading} = useGetAllProductsQuery(QUERY_FILTER)
+  const {data, isLoading, isFetching} = useGetAllProductsQuery(QUERY_FILTER)
   const {products = []} = data || {}
 
   return (
@@ -45,7 +45,11 @@ const HomePage: NextPage = () => {
                 </a>
               </Link>
             </h2>
-            <ProductGrid data={products} skeletons={QUERY_FILTER.limit} isLoading={isLoading} />
+            <ProductGrid
+              data={products}
+              skeletons={QUERY_FILTER.limit}
+              isLoading={isLoading || isFetching}
+            />
           </div>
         </div>
       </div>

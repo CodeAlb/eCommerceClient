@@ -1,76 +1,68 @@
 import {GetStaticProps} from 'next'
-import Link from 'next/link'
-import DataTableWithSearch from '../../components/DataTableWithSearch'
-import {EditIcon} from '../../components/Svg'
-import {useGetAllUsersQuery} from '../../store/services/user'
-import {cn} from '../../utils/helpers'
+import DataTable from '../../components/DataTable'
+import {ArrowRightIcon} from '../../components/Svg'
+import {useGetAllUsersQuery} from '../../store/api/baseApi'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
-  btn: 'whitespace-nowrap inline-flex items-center justify-center duration-150 text-white bg-orange-400 hover:bg-orange-600 h-8 w-8 rounded',
-  btnIcon: 'w-5',
-  cell: 'text-base py-1.5',
+  actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
   body: '',
+  avatar:
+    'h-9 w-9 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center',
 }
 
-const COLUMNS = [
+const STRUCTURE = [
   {
-    name: 'Username',
-    selector: (r: any) => r.username,
-    sortable: false,
-    cell: (r: any) => <span className={css.cell}>{r.username}</span>,
-    grow: 2,
+    selector: (r: any) => <div className={css.avatar}>{r.name.slice(0, 1)}</div>,
+    className: 'col-span-1',
   },
   {
-    name: 'Name',
+    title: 'Full Name',
     selector: (r: any) => r.name,
-    sortable: true,
-    cell: (r: any) => <span className={css.cell}>{r.name}</span>,
-    grow: 3,
+    className: 'col-span-3 truncate',
+    isBold: true,
   },
   {
-    name: 'Email',
+    title: 'Email',
     selector: (r: any) => r.email,
-    sortable: true,
-    cell: (r: any) => <span className={cn(css.cell, 'truncate')}>{r.email}</span>,
-    grow: 5,
+    className: 'col-span-3 truncate',
   },
   {
-    name: 'Role',
+    title: 'Username',
+    selector: (r: any) => r.username,
+    className: 'col-span-3 truncate',
+  },
+  {
+    title: 'Role',
     selector: (r: any) => r.role,
-    sortable: true,
-    cell: (r: any) => <span className={css.cell}>{r.role}</span>,
-    grow: 2,
+    className: 'col-span-1 truncate',
   },
   {
-    name: 'Action',
-    selector: false,
-    sortable: true,
-    cell: (d: any) => (
-      <Link href={`/admin/user/${d._id}`}>
-        <a className={css.btn}>
-          <EditIcon className={css.btnIcon} />
-        </a>
-      </Link>
-    ),
-    grow: 0,
+    selector: (d: any) => <ArrowRightIcon className={css.actionIcon} />,
+    className: 'justify-end',
   },
 ]
 
+const QUERY_FILTER = {
+  limit: 10,
+  page: 1,
+}
+
 const AdminUsers = () => {
-  const {data, isLoading} = useGetAllUsersQuery()
+  const {data, isLoading, isFetching} = useGetAllUsersQuery()
   const {users} = data || {}
+  const showLoader = isLoading || isFetching
 
   return (
     <div>
       <h1 className={css.title}>Users</h1>
       <div className={css.body}>
-        <DataTableWithSearch
-          placeholder="Search user..."
+        <DataTable
+          isLoading={showLoader}
+          skeletons={QUERY_FILTER.limit}
+          basePath="/admin/users"
           data={users as any}
-          columns={COLUMNS as any}
-          keyField="_id"
-          searchPattern={(i: any) => [i._id, i.name, i.email, i.role].join(' ')}
+          structure={STRUCTURE}
         />
       </div>
     </div>

@@ -3,11 +3,11 @@ import Head from 'next/head'
 import {useState} from 'react'
 import Paginate from '../components/Paginate'
 import ProductGrid from '../components/product/ProductGrid'
-import {ResultsFound, ResultsLoading, ResultsNotFound} from '../components/ResultsLabel'
 import ProductFilters from '../components/product/ProductFilters'
 import Hero from '../components/elements/Hero'
-import {useGetAllProductsQuery} from '../store/services/product'
+import {useGetAllProductsQuery} from '../store/api/baseApi'
 import {IProductFilter} from '../types/product'
+import QueryResults from '../components/QueryResult'
 
 const css = {
   main: 'max-w-site mx-auto px-4',
@@ -25,26 +25,9 @@ const QUERY_FILTER = {
 
 const ShopPage: NextPage = () => {
   const [filter, setFilter] = useState<IProductFilter>(QUERY_FILTER)
-  const {data, isLoading} = useGetAllProductsQuery(filter)
+  const {data, isLoading, isFetching} = useGetAllProductsQuery(filter)
   const {found = 0, total = 0, pages = 1, page = 1, products = []} = data || {}
-
-  const ShowResults = () => {
-    if (isLoading) {
-      return (
-        <ResultsLoading>
-          <ProductGrid data={[]} isLoading={true} skeletons={filter.limit} withSidebar={true} />
-        </ResultsLoading>
-      )
-    }
-    if (found) {
-      return (
-        <ResultsFound page={page} found={found} limit={QUERY_FILTER.limit} total={total}>
-          <ProductGrid isLoading={false} data={products} withSidebar={true} />
-        </ResultsFound>
-      )
-    }
-    return <ResultsNotFound />
-  }
+  const showLoader = isLoading || isFetching
 
   return (
     <div>
@@ -58,12 +41,25 @@ const ShopPage: NextPage = () => {
         <div className={css.grid}>
           <ProductFilters filter={filter} setFilter={setFilter} />
           <div className={css.body}>
-            <ShowResults />
-            <Paginate
-              setFilter={setFilter}
-              pages={!isLoading && pages > 1 ? pages : 0}
+            <QueryResults
+              isLoading={showLoader}
               page={page}
-            />
+              limit={QUERY_FILTER.limit}
+              total={total}
+              found={found}
+            >
+              <ProductGrid
+                data={products}
+                isLoading={showLoader}
+                skeletons={filter.limit}
+                withSidebar={true}
+              />
+              <Paginate
+                setFilter={setFilter}
+                pages={!showLoader && pages > 1 ? pages : 0}
+                page={page}
+              />
+            </QueryResults>
           </div>
         </div>
       </div>

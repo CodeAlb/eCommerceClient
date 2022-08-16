@@ -10,7 +10,7 @@ const css = {
     'group-hover:opacity-75 duration-250 bg-gray-100 pt-[100%] relative rounded overflow-hidden',
   image: 'absolute inset-0 w-full h-full object-cover',
   body: 'mt-5 space-y-2',
-  price: 'font-medium text-black flex items-center font-medium',
+  price: 'font-medium text-black flex items-center',
   oldPrice: 'line-through mr-4 text-gray-500',
   name: 'text-black truncate',
   ratings: 'flex items-center',

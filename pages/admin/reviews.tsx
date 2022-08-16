@@ -6,7 +6,7 @@ import {useState} from 'react'
 import DataTableWithSearch from '../../components/DataTableWithSearch'
 import SearchForm from '../../components/elements/SearchForm'
 import {EditIcon} from '../../components/Svg'
-import {useGetAllReviewsQuery} from '../../store/services/product'
+import {useGetAllReviewsQuery} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 
 const css = {

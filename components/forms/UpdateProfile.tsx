@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
-import {ILoggedUserData, useUpdateLoggedUserMutation} from '../../store/services/user'
+import {useUpdateLoggedUserMutation} from '../../store/api/baseApi'
 import {getAuthState, updateUserData} from '../../store/slices/authReducer'
 import {useDispatch, useSelector} from '../../store/store'
+import {IUserLogin} from '../../types/user'
 import {cn} from '../../utils/helpers'
 import Input from '../fields/Input'
 
@@ -45,7 +46,7 @@ const UpdateProfileForm = () => {
     }
   }, [isSuccess])
 
-  const sendFormData = (data: ILoggedUserData) => {
+  const sendFormData = (data: any) => {
     if (!isLoading) {
       updateLoggedUser(data)
     }

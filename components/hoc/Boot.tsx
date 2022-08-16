@@ -1,4 +1,4 @@
-import {useGetLoggedUserQuery} from '../../store/services/user'
+import {useGetLoggedUserQuery} from '../../store/api/baseApi'
 import {useDispatch, useSelector} from '../../store/store'
 import {getAuthState} from '../../store/slices/authReducer'
 import {skipToken} from '@reduxjs/toolkit/query'

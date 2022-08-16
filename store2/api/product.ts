@@ -1,5 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import type {IProductResponse, IProductFilter, IProductsResponse} from '../../types/product'
+import type {
+  IProductResponse,
+  IProductFilter,
+  IProductsResponse,
+  IProductCard,
+} from '../../types/product'
 import {buildQueryFilter} from '../../utils/buildQueryFilter'
 
 export const productApi = createApi({
@@ -15,6 +20,7 @@ export const productApi = createApi({
     },
     credentials: 'include',
   }),
+  tagTypes: ['Product'],
   endpoints: (builder) => ({
     getProduct: builder.query<IProductResponse, string>({
       query: (id) => `products/${id}`,
@@ -23,6 +29,18 @@ export const productApi = createApi({
       query: (filter) => {
         const params = buildQueryFilter(filter)
         return `products/${params}`
+      },
+      providesTags: ({success, products}: any) => {
+        if (success) {
+          return [
+            {type: 'Product', id: 'LIST'},
+            ...products.map(({_id}: IProductCard) => ({
+              type: 'Product',
+              id: _id,
+            })),
+          ]
+        }
+        return [{type: 'Product', id: 'LIST'}]
       },
     }),
     getAllReviews: builder.query<any, string>({

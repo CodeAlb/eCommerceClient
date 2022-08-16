@@ -4,7 +4,7 @@ export const guestNavLinks = [
 ]
 export const userNavLinks = [
   {title: 'My Account', path: '/account'},
-  {title: 'My Orders', path: '/account/orders'},
+  {title: 'My Orders', path: '/orders'},
   {title: 'Logout', path: '/logout'},
 ]
 export const adminNavLinks = [{title: 'Dashboard', path: '/admin'}, ...userNavLinks]

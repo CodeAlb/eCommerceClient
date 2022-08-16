@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {useForm} from 'react-hook-form'
-import {useUpdateUserPasswordMutation} from '../../store/services/user'
+import {useUpdateUserPasswordMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import {PasswordInput} from '../fields/Input'
 
