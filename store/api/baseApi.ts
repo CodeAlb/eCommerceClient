@@ -1,5 +1,5 @@
 import {createApi} from '@reduxjs/toolkit/query/react'
-import {baseQueryWithReauth} from '../../store2/api/baseQuery'
+import {baseQueryWithReauth} from './baseQuery'
 import {IOrdersResponse} from '../../types/order'
 import {
   IProductCard,
