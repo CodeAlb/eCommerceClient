@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { ReactNode } from 'react'
-import { dashboardNavLinks } from '../config/dashboardNav'
-import { getAuthState } from '../store/slices/authReducer'
-import { useSelector } from '../store/store'
+import {ReactNode} from 'react'
+import {getAuthState} from '../store/slices/authReducer'
+import {useSelector} from '../store/store'
+import {DASHBOARD_LINKS} from '../utils/constants'
 import ActiveLink from './hoc/ActiveLink'
 import MyAccount from './MyAccount'
 
@@ -15,8 +15,7 @@ const css = {
   header: 'bg-black text-white fixed top-0 w-full z-20',
   headerInner: 'max-w-site mx-auto px-4 flex items-center justify-between h-12 sm:h-14',
   body: 'max-w-site mx-auto relative w-full grid md:min-h-screen md:grid-cols-12 pt-12 md:pt-14',
-  sidebar:
-    'relative px-4 py-6 sm:py-8 md:pr-6 lg:pr-8 md:col-span-4 lg:col-span-3 md:py-10',
+  sidebar: 'relative px-4 py-6 sm:py-8 md:pr-6 lg:pr-8 md:col-span-4 lg:col-span-3 md:py-10',
   sidebarBg: 'absolute top-0 right-full h-full w-[50vw]',
   content:
     'px-4 py-6 sm:py-8 md:col-span-8 lg:col-span-9 md:w-full h-full text-black md:p-10 overflow-hidden',
@@ -37,7 +36,7 @@ const css = {
   menuLinkIcon: 'w-5 sm:w-6 mr-3 sm:mr-3.5 md:mr-4',
 }
 
-const MapLinkIcon = ({ path }: { path: string }) => {
+const MapLinkIcon = ({path}: {path: string}) => {
   switch (path) {
     case '/admin/products':
       return (
@@ -127,8 +126,8 @@ const MapLinkIcon = ({ path }: { path: string }) => {
   }
 }
 
-const Dashboard = ({ children }: DashboardProps) => {
-  const { user } = useSelector(getAuthState)
+const Dashboard = ({children}: DashboardProps) => {
+  const {user} = useSelector(getAuthState)
 
   return (
     <div className={css.wrapper}>
@@ -148,7 +147,7 @@ const Dashboard = ({ children }: DashboardProps) => {
         <aside className={css.sidebar}>
           <div className={css.sidebarBg} />
           <ul className={css.menu}>
-            {dashboardNavLinks.map(({ title, path }, i) => (
+            {DASHBOARD_LINKS.map(({title, path}, i) => (
               <li key={i} className={css.menuItem}>
                 <ActiveLink
                   exact={path === '/admin'}
