@@ -5,10 +5,9 @@ import {ArrowNarrowRightIcon} from '../../components/Svg'
 import {getAuthState} from '../../store/slices/authReducer'
 import {getCartState} from '../../store/slices/cartReducer'
 import {useSelector} from '../../store/store'
-import {calculateTotal, cn, numToPrice} from '../../utils/helpers'
+import {calculateTotal, cn, numToPrice, setSessionStorage} from '../../utils/helpers'
 import Hero from '../../components/elements/Hero'
 import {NextPage} from 'next'
-import {setSessionStorage} from '../../utils/sessionStorage'
 
 const css = {
   main: 'pb-12 sm:pb-16',
