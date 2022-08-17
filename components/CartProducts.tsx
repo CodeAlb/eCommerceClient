@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import {useState} from 'react'
 import {
   decrementAmount,
   deleteCartItem,
@@ -124,7 +123,7 @@ const CartProducts = ({isModal = false}: CartProductsProps) => {
             {item.oldPrice ? (
               <>
                 <span>${Number(item.price * item.amount).toFixed(2)}</span>
-                <span className="line-through text-gray-500">
+                <span className="text-gray-500 line-through">
                   ${Number(item.oldPrice * item.amount).toFixed(2)}
                 </span>
               </>
