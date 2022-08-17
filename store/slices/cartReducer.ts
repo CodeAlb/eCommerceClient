@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit'
-import {setLocalStorage} from '../../utils/localStorage'
+import {setLocalStorage} from '../../utils/helpers'
 
 export type CartState = {
   isCartOpen: boolean
