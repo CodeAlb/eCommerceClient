@@ -5,8 +5,7 @@ import {getAuthState} from '../../store/slices/authReducer'
 import {clearCart, getCartState} from '../../store/slices/cartReducer'
 import {FormEvent, useEffect, useRef, useState} from 'react'
 import {useRouter} from 'next/router'
-import {getSessionStorage} from '../../utils/sessionStorage'
-import {cn, numToPrice} from '../../utils/helpers'
+import {cn, numToPrice, getSessionStorage} from '../../utils/helpers'
 import {useCreateOrderMutation, useStripePaymentMutation} from '../../store/api/baseApi'
 
 const CARD_ELEMENT_OPTIONS = {
