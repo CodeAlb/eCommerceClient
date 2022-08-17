@@ -3,6 +3,7 @@ import DataTable from '../../components/DataTable'
 import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllOrdersQuery} from '../../store/api/baseApi'
 import {cn, numToPrice, tw} from '../../utils/helpers'
+import {timeAgo} from '../../utils/timeAgo'
 
 const css = tw({
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
@@ -15,6 +16,12 @@ const css = tw({
 
 const STRUCTURE = [
   {
+    title: 'Order ID',
+    selector: (r: any) => r._id,
+    className: 'col-span-5 truncate',
+    isBold: true,
+  },
+  {
     title: 'Status',
     selector: (r: any) => (
       <span
@@ -26,21 +33,15 @@ const STRUCTURE = [
     className: 'col-span-2 truncate',
   },
   {
-    title: 'Order ID',
-    selector: (r: any) => r._id,
-    className: 'col-span-5 truncate',
-    isBold: true,
-  },
-  {
-    title: 'Items',
-    selector: (r: any) => r.orderItems.length,
+    title: 'Purchased',
+    selector: (r: any) => timeAgo(r.createdAt),
     className: 'col-span-2',
-    isBold: true,
   },
   {
-    title: 'Amount',
+    title: 'Total',
     selector: (r: any) => numToPrice(r.totalPrice),
     className: 'col-span-2',
+    isBold: true,
   },
   {
     selector: (d: any) => <ArrowRightIcon className={css.actionIcon} />,
