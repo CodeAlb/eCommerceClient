@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import {useState} from 'react'
-import {adminNavLinks, guestNavLinks, userNavLinks} from '../config/accountNav'
 import useOnClickOutside from '../hooks/onClickOutside'
 import {fetchLogout, getAuthState} from '../store/slices/authReducer'
 import {useDispatch, useSelector} from '../store/store'
+import {ADMIN_LINKS, GUEST_LINKS, USER_LINKS} from '../utils/constants'
 import {cn} from '../utils/helpers'
 import {BurgerIcon, UserIcon} from './Svg'
 
@@ -35,9 +35,9 @@ const MyAccount = ({className, isDashboard}: MyAccountProps) => {
   const {role} = user || {}
   const dispatch = useDispatch()
 
-  let links = guestNavLinks
+  let links = GUEST_LINKS
   if (accessToken) {
-    links = role === 'admin' && !isDashboard ? adminNavLinks : userNavLinks
+    links = role === 'admin' && !isDashboard ? ADMIN_LINKS : USER_LINKS
   }
 
   const ref = useOnClickOutside(() => {
