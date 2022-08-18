@@ -38,7 +38,7 @@ const css = {
 
 const MapLinkIcon = ({path}: {path: string}) => {
   switch (path) {
-    case '/admin/products':
+    case '/dashboard/products':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ const MapLinkIcon = ({path}: {path: string}) => {
           />
         </svg>
       )
-    case '/admin/orders':
+    case '/dashboard/orders':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const MapLinkIcon = ({path}: {path: string}) => {
           />
         </svg>
       )
-    case '/admin/users':
+    case '/dashboard/users':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@ const MapLinkIcon = ({path}: {path: string}) => {
           />
         </svg>
       )
-    case '/admin/reviews':
+    case '/dashboard/reviews':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
