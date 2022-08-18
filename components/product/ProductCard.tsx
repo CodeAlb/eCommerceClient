@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {IProductCard} from '../../types/product'
 import {numToPrice} from '../../utils/helpers'
+import StarRating from '../StarRating'
 import ProductStarReviews from './ProductStarReviews'
 
 const css = {
@@ -14,7 +15,7 @@ const css = {
   oldPrice: 'line-through mr-4 text-gray-500',
   name: 'text-black truncate',
   ratings: 'flex items-center',
-  stars: 'text-orange-600/60 mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&>*]:w-4',
   reviews: 'text-sm text-gray-500',
 }
 
@@ -30,7 +31,9 @@ const ProductCard = ({name, price, oldPrice, images, ratings, numOfReviews, _id}
           </div>
           <div className={css.body}>
             <div className={css.ratings}>
-              <ProductStarReviews className={css.stars} ratings={ratings} />
+              <div className={css.stars}>
+                <StarRating rating={ratings} hasHalfStars />
+              </div>
               <span className={css.reviews}>
                 ({numOfReviews} {numOfReviews === 1 ? 'Review' : 'Reviews'})
               </span>
