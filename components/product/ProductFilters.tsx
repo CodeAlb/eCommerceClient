@@ -3,6 +3,7 @@ import {IProductFilter} from '../../types/product'
 import {cn, fillArray} from '../../utils/helpers'
 import {StarEmptyIcon, StarFilledIcon} from '../Svg'
 import RangeSlider from '../elements/RangeSlider'
+import StarRating from '../StarRating'
 
 interface ProductFiltersProps {
   filter: IProductFilter
@@ -19,7 +20,7 @@ const css = {
   action: '',
   applyBtn:
     'rounded px-2 h-6 bg-white border border-black text-black font-medium uppercase text-xs tracking-wider hover:bg-black hover:text-white duration-150',
-  stars: 'text-orange-600/60 mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&>*]:w-4',
   filterList: 'space-y-1',
 }
 
@@ -102,14 +103,7 @@ const ProductFilters = ({filter, setFilter}: ProductFiltersProps) => {
                     setFilter({...filter, page: undefined, price, ratings: n - i})
                   }}
                 >
-                  {fillArray(5, 1).map((sn, si) => {
-                    const stars = n - i
-
-                    if (stars > si) {
-                      return <StarFilledIcon key={si} />
-                    }
-                    return <StarEmptyIcon key={si} />
-                  })}
+                  <StarRating rating={n - i} />
                 </button>
               </li>
             ))}

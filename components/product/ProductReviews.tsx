@@ -1,17 +1,20 @@
-import {Fragment} from 'react'
+import {getAuthState} from '../../store/slices/authReducer'
+import {useSelector} from '../../store/store'
 import {IProduct} from '../../types/product'
-import {fillArray} from '../../utils/helpers'
+import {tw} from '../../utils/helpers'
 import {timeAgo} from '../../utils/timeAgo'
-import {StarEmptyIcon, StarFilledIcon} from '../Svg'
+import StarRating from '../StarRating'
+import {PlusIcon} from '../Svg'
 
 interface ProductReviewsProps {
   product?: IProduct
 }
 
-const css = {
+const css = tw({
   wrapper: 'max-w-2xl mx-auto mt-12 sm:mt-16',
+  headline: 'flex items-center justify-between',
   title: 'text-xl sm:text-2xl md:text-3xl text-black',
-  reviews: 'mt-2 sm:mt-3 space-y-6 sm:space-y-10',
+  reviews: 'mt-8 sm:mt-10 space-y-6 sm:space-y-10',
   review: 'flex',
   media: 'pr-4',
   avatar:
@@ -21,10 +24,15 @@ const css = {
   badge:
     'ml-2 px-1 py-1 leading-none rounded text-[10px] tracking-wider uppercase bg-gray-400 text-white',
   ratings: 'flex items-center',
-  stars: 'mr-4 sm:mr-5 text-orange-600/60 mr-2 flex items-center [&>*]:w-4',
+  stars: 'sm:mr-5 mr-2 flex items-center [&>*]:w-4',
   createdAt: 'text-sm text-gray-500',
   comment: 'mt-2 text-gray-500',
-}
+  createBtn:
+    'border border-gray-300 px-3 sm:px-4 h-9 sm:h-10 rounded-full inline-flex items-center justify-center font-medium hover:border-black duration-150 group',
+  createIcon: '-ml-1 w-4 mr-2 text-gray-500',
+  noReviews: 'text-center text-gray-500',
+  warning: 'mt-4 sm:mt-5 rounded-lg text-orange-700 bg-orange-50 py-2 px-4 text-center',
+})
 
 const ProductReview = ({user, comment, createdAt, rating, author}: any) => {
   return (
@@ -39,11 +47,7 @@ const ProductReview = ({user, comment, createdAt, rating, author}: any) => {
         </div>
         <div className={css.ratings}>
           <div className={css.stars}>
-            {fillArray(5).map((n, i) => (
-              <Fragment key={i}>
-                {rating >= i + 1 ? <StarFilledIcon /> : <StarEmptyIcon />}
-              </Fragment>
-            ))}
+            <StarRating rating={rating} />
           </div>
           <div className={css.createdAt}>{timeAgo(createdAt)}</div>
         </div>
@@ -54,13 +58,21 @@ const ProductReview = ({user, comment, createdAt, rating, author}: any) => {
 }
 
 const ProductReviews = ({product}: ProductReviewsProps) => {
+  const {accessToken} = useSelector(getAuthState)
   const {numOfReviews = 0, reviews = [], user} = product || {}
 
   return (
     <div className={css.wrapper}>
-      <h2 className={css.title}>
-        {(numOfReviews || 0) > 0 ? `Reviews (${numOfReviews})` : 'Make a Review'}
-      </h2>
+      <div className={css.headline}>
+        <h2 className={css.title}>Reviews ({numOfReviews})</h2>
+        {accessToken && (
+          <button className={css.createBtn}>
+            <PlusIcon className={css.createIcon} />
+            Add Review
+          </button>
+        )}
+      </div>
+      {!accessToken && <p className={css.warning}>You must be logged in to leave a review!</p>}
       {reviews?.length > 0 && (
         <div className={css.reviews}>
           {reviews?.map(({_id, ...props}: any) => (

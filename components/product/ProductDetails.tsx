@@ -1,9 +1,9 @@
 import {IProduct} from '../../types/product'
 import {numToPrice} from '../../utils/helpers'
 import Breadcrumb from '../Breadcrumb'
+import StarRating from '../StarRating'
 import ProductAction from './ProductAction'
 import ProductDetailsLoading from './ProductDetailsLoading'
-import ProductStarReviews from './ProductStarReviews'
 
 type ProductDetailsProps = {
   product?: IProduct
@@ -15,7 +15,7 @@ const css = {
 
   name: 'text-2xl sm:text-3xl font-medium text-black uppercase',
   ratings: 'mt-4 flex items-center',
-  stars: 'text-orange-600/60 mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&>*]:w-4',
   reviews: 'text-sm text-gray-500',
   price: 'mt-4 text-xl sm:text-2xl text-black flex items-center font-medium',
   oldPrice: 'line-through mr-4 text-gray-500',
@@ -58,7 +58,9 @@ const ProductDetails = ({product, isLoading}: ProductDetailsProps) => {
       <Breadcrumb className={css.crumbs} links={crumbLinks} />
       <h1 className={css.name}>{name}</h1>
       <div className={css.ratings}>
-        <ProductStarReviews className={css.stars} ratings={ratings} />
+        <div className={css.stars}>
+          <StarRating rating={ratings} hasHalfStars />
+        </div>
         <span className={css.reviews}>
           ({numOfReviews} {numOfReviews === 1 ? 'Review' : 'Reviews'})
         </span>
