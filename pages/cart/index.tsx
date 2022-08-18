@@ -1,3 +1,4 @@
+import {NextSeo} from 'next-seo'
 import Link from 'next/link'
 import CartProducts from '../../components/CartProducts'
 import Hero from '../../components/elements/Hero'
@@ -28,6 +29,7 @@ const Cart = () => {
 
   return (
     <div className={css.main}>
+      <NextSeo title="Shopping Cart" />
       <Hero title="Shopping Cart" />
       <div className={css.body}>
         <div className={css.products}>

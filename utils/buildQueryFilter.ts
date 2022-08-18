@@ -46,7 +46,7 @@ export const buildQueryFilter = ({
         maxRate = 2.74
         break
       case 1:
-        minRate = 0
+        minRate = 0.75
         maxRate = 1.74
         break
     }

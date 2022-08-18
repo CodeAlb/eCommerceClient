@@ -2,6 +2,7 @@ import PaymentSteps from '../../components/elements/PaymentStep'
 import Hero from '../../components/elements/Hero'
 import BillingForm from '../../components/forms/BillingForm'
 import {NextPage} from 'next'
+import {NextSeo} from 'next-seo'
 
 const css = {
   main: 'pb-12 sm:pb-16',
@@ -19,6 +20,7 @@ const css = {
 const CheckoutPage: NextPage = () => {
   return (
     <div className={css.main}>
+      <NextSeo title="Checkout - 1/3" />
       <Hero title="Checkout" />
       <PaymentSteps className={css.steps} checkout />
       <div className={css.body}>

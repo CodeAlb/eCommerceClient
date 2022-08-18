@@ -8,6 +8,7 @@ import {useSelector} from '../../store/store'
 import {calculateTotal, cn, numToPrice, setSessionStorage} from '../../utils/helpers'
 import Hero from '../../components/elements/Hero'
 import {NextPage} from 'next'
+import {NextSeo} from 'next-seo'
 
 const css = {
   main: 'pb-12 sm:pb-16',
@@ -149,6 +150,7 @@ const ConfirmPage: NextPage = () => {
 
   return (
     <div className={css.main}>
+      <NextSeo title="Confirm - 2/3" />
       <Hero title="Confirm" />
       <PaymentSteps className={css.steps} checkout confirm />
       <div className={css.body}>

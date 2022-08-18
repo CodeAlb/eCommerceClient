@@ -1,6 +1,7 @@
 import {GetStaticProps, NextPage} from 'next'
 import LoginForm from '../../components/forms/LoginForm'
 import Hero from '../../components/elements/Hero'
+import {NextSeo} from 'next-seo'
 
 const css = {
   main: 'max-w-site mx-auto px-4 pb-12 sm:pb-16',
@@ -9,6 +10,7 @@ const css = {
 const LoginPage: NextPage = () => {
   return (
     <div className={css.main}>
+      <NextSeo title="Login" />
       <Hero title="Login" />
       <LoginForm />
     </div>

@@ -7,6 +7,7 @@ import {useRouter} from 'next/router'
 import PaymentSteps from '../../components/elements/PaymentStep'
 import Hero from '../../components/elements/Hero'
 import StripeForm from '../../components/forms/StripeForm'
+import {NextSeo} from 'next-seo'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
 
@@ -28,6 +29,7 @@ const Payment = () => {
 
   return (
     <Elements stripe={stripePromise}>
+      <NextSeo title="Payment - 3/3" />
       <div className={css.main}>
         <Hero title="Payment" />
         <PaymentSteps className={css.steps} checkout confirm payment />
