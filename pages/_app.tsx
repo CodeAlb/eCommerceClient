@@ -9,6 +9,7 @@ import CartModal from '../components/CartModal'
 import Boot from '../components/hoc/Boot'
 import Protected from '../components/hoc/Protected'
 import Dashboard from '../components/Dashboard'
+import {DefaultSeo} from 'next-seo'
 
 const css = {
   wrapper: 'min-h-screen',
@@ -20,6 +21,7 @@ function MyApp({Component, pageProps}: AppProps) {
 
   return (
     <div className={css.wrapper}>
+      <DefaultSeo title="Explore" titleTemplate="%s | Furniture Shop" />
       <Provider store={store}>
         <Boot />
         <Protected withAuth={withAuth} userRoles={userRoles}>
