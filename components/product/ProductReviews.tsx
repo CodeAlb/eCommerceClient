@@ -1,16 +1,20 @@
 import {getAuthState} from '../../store/slices/authReducer'
 import {useSelector} from '../../store/store'
 import {IProduct} from '../../types/product'
-import {tw} from '../../utils/helpers'
 import {timeAgo} from '../../utils/timeAgo'
 import StarRating from '../StarRating'
-import {PlusIcon} from '../Svg'
+import dynamic from 'next/dynamic'
+import {useState} from 'react'
+
+const ReviewForm = dynamic(() => import('../../components/forms/ReviewForm'), {
+  ssr: false,
+})
 
 interface ProductReviewsProps {
   product?: IProduct
 }
 
-const css = tw({
+const css = {
   wrapper: 'max-w-2xl mx-auto mt-12 sm:mt-16',
   headline: 'flex items-center justify-between',
   title: 'text-xl sm:text-2xl md:text-3xl text-black',
@@ -32,7 +36,9 @@ const css = tw({
   createIcon: '-ml-1 w-4 mr-2 text-gray-500',
   noReviews: 'text-center text-gray-500',
   warning: 'mt-4 sm:mt-5 rounded-lg text-orange-700 bg-orange-50 py-2 px-4 text-center',
-})
+  modal: 'fixed inset-0 flex items-center justify-center z-40',
+  modalOverlay: 'absolute inset-0 bg-black/5',
+}
 
 const ProductReview = ({user, comment, createdAt, rating, author}: any) => {
   return (
@@ -58,20 +64,27 @@ const ProductReview = ({user, comment, createdAt, rating, author}: any) => {
 }
 
 const ProductReviews = ({product}: ProductReviewsProps) => {
+  const [showForm, setShowForm] = useState(false)
   const {accessToken} = useSelector(getAuthState)
-  const {numOfReviews = 0, reviews = [], user} = product || {}
+  const {_id, numOfReviews = 0, reviews = [], user} = product || {}
+
+  const toggleForm = () => {
+    setShowForm((state) => !state)
+  }
 
   return (
     <div className={css.wrapper}>
       <div className={css.headline}>
-        <h2 className={css.title}>Reviews ({numOfReviews})</h2>
+        <h2 className={css.title}>
+          {numOfReviews > 0 ? `Reviews (${numOfReviews})` : 'No Reviews'}
+        </h2>
         {accessToken && (
-          <button className={css.createBtn}>
-            <PlusIcon className={css.createIcon} />
-            Add Review
+          <button type="button" className={css.createBtn} onClick={toggleForm}>
+            {showForm ? 'Close Form' : 'Add Review'}
           </button>
         )}
       </div>
+      {accessToken && showForm && <ReviewForm productId={_id as string} />}
       {!accessToken && <p className={css.warning}>You must be logged in to leave a review!</p>}
       {reviews?.length > 0 && (
         <div className={css.reviews}>

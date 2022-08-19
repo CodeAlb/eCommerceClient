@@ -3,17 +3,17 @@ import {NextSeo} from 'next-seo'
 import DataTable from '../../components/DataTable'
 import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllOrdersQuery} from '../../store/api/baseApi'
-import {cn, numToPrice, tw} from '../../utils/helpers'
+import {cn, numToPrice} from '../../utils/helpers'
 import {timeAgo} from '../../utils/timeAgo'
 
-const css = tw({
+const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
   actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
   status: 'uppercase font-medium text-xs inline-flex items-center px-2 py-1 rounded text-white',
   statusGreen: 'bg-green-600',
   statusRed: 'bg-orange-300',
   body: '',
-})
+}
 
 const STRUCTURE = [
   {

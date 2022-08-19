@@ -1,9 +1,9 @@
 import {ReactNode} from 'react'
-import {cn, tw} from '../utils/helpers'
+import {cn} from '../utils/helpers'
 
-const css = tw({
+const css = {
   message: 'mb-4 text-center sm:text-left text-gray-500',
-})
+}
 
 interface QueryResultsProps {
   className?: string

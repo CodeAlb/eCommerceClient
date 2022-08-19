@@ -6,16 +6,16 @@ import Paginate from '../../components/Paginate'
 import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllProductsQuery} from '../../store/api/baseApi'
 import {IProductFilter} from '../../types/product'
-import {numToPrice, tw} from '../../utils/helpers'
+import {numToPrice} from '../../utils/helpers'
 
-const css = tw({
+const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
   actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
   price: 'text-black flex flex-col justify-center',
   oldPrice: 'line-through text-gray-400',
   img: 'w-12 h-12 rounded',
   body: '',
-})
+}
 
 const STRUCTURE = [
   {

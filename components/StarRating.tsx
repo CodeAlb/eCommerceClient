@@ -1,12 +1,12 @@
 import {useMemo} from 'react'
-import {cn, tw} from '../utils/helpers'
+import {cn} from '../utils/helpers'
 import {StarIcon} from './Svg'
 
-const css = tw({
+const css = {
   emptyStar: 'text-orange-400',
   halfStar: 'text-orange-400 [&_.half]:fill-orange-400',
   fullStar: 'text-orange-400 fill-orange-400',
-})
+}
 
 interface StarRatingProps {
   rating: number
