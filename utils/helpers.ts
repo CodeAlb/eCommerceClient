@@ -3,9 +3,6 @@ export const cn = (...classNames: any[]) => {
   return classNames.filter(Boolean).join(' ')
 }
 
-// Regex callback for Tailwind Syntax
-export const tw = (object: {[key: string]: string}) => object
-
 // Round number by half.
 export const roundByHalf = (num: number) => {
   return Number((Math.round(num * 2) / 2).toFixed(1))
