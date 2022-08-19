@@ -4,7 +4,6 @@ import ProductDescription from '../../components/product/ProductDescription'
 import ProductReviews from '../../components/product/ProductReviews'
 import ProductGallery from '../../components/product/ProductGallery'
 import ProductDetails from '../../components/product/ProductDetails'
-import StarRating from '../../components/StarRating'
 import {NextSeo} from 'next-seo'
 
 interface ProductPageProps {
