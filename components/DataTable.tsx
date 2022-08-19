@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React, {ReactNode} from 'react'
-import {cn, fillArray, tw} from '../utils/helpers'
+import {cn, fillArray} from '../utils/helpers'
 
-const css = tw({
+const css = {
   wrapper: 'space-y-4',
   headRow: 'grid grid-cols-12 gap-3 sm:gap-4 px-3',
   headCell: 'flex items-center font-medium text-gray-600',
@@ -14,7 +14,7 @@ const css = tw({
   skeletons:
     'space-y-4 relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent',
   skeletonItem: 'bg-gray-200 min-h-[74px] rounded',
-})
+}
 
 type DataTableProps = {
   className?: string
