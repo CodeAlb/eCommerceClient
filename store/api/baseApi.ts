@@ -1,11 +1,10 @@
 import {createApi} from '@reduxjs/toolkit/query/react'
 import {baseQueryWithReauth} from './baseQuery'
-import {IOrdersResponse} from '../../types/order'
+import {IOrderResponse, IOrdersResponse} from '../../types/order'
 import {
   IProductCard,
   IProductFilter,
   IProductResponse,
-  IProductReview,
   IProductsResponse,
 } from '../../types/product'
 import {
@@ -16,6 +15,7 @@ import {
   IUsersResponse,
 } from '../../types/user'
 import {buildQueryFilter} from '../../utils/buildQueryFilter'
+import {IReview, IReviewData} from '../../types/review'
 
 const transformResponse = async (response: any) => {
   await new Promise((resolve) => setTimeout(resolve, 700))
@@ -112,7 +112,7 @@ export const baseApi = createApi({
         if (success) {
           return [
             {type: 'Review', id: 'LIST'},
-            ...reviews.map(({_id}: IProductReview) => ({
+            ...reviews.map(({_id}: IReview) => ({
               type: 'Review',
               id: _id,
             })),
@@ -121,12 +121,24 @@ export const baseApi = createApi({
         return [{type: 'Review', id: 'LIST'}]
       },
     }),
+    createReview: builder.mutation<any, IReviewData>({
+      query: (data) => ({
+        url: 'reviews/create',
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => [{type: 'Product', id: arg.productId}],
+    }),
     getAllOrders: builder.query<IOrdersResponse, void>({
       query: () => 'admin/orders',
       providesTags: ['Order'],
     }),
     getMyOrders: builder.query<IOrdersResponse, void>({
       query: () => `orders`,
+      providesTags: ['Order'],
+    }),
+    getOrder: builder.query<IOrderResponse, string>({
+      query: (id) => `orders/${id}`,
       providesTags: ['Order'],
     }),
     createOrder: builder.mutation<any, any>({
@@ -153,11 +165,13 @@ export const {
   useCreateUserMutation,
   useUpdateLoggedUserMutation,
   useUpdateUserPasswordMutation,
+  useCreateReviewMutation,
   useGetAllUsersQuery,
   useGetProductQuery,
   useGetAllProductsQuery,
   useGetAllReviewsQuery,
   useGetAllOrdersQuery,
+  useGetOrderQuery,
   useGetMyOrdersQuery,
   useCreateOrderMutation,
   useStripePaymentMutation,
