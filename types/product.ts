@@ -1,4 +1,5 @@
 import {IImage} from './image'
+import {IReview} from './review'
 
 export interface IProduct {
   _id: string
@@ -12,7 +13,7 @@ export interface IProduct {
   seller: string
   stock: number
   numOfReviews: number
-  reviews: IProductReview[]
+  reviews: IReview[]
   createdAt: string
   __v: number
   excerpt?: string
@@ -23,17 +24,6 @@ export interface IProduct {
 }
 
 export type IProductPrice = [number, number]
-
-export interface IProductReview {
-  _id: string
-  user: {
-    name: string
-    _id: string
-  }
-  name: string
-  rating: number
-  comment: string
-}
 
 export interface IProductCard {
   _id: string
