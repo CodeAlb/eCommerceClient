@@ -73,14 +73,14 @@ const CartModal = () => {
             <span className={css.totalTitle}>Total:</span>
             <span className={css.totalPrice}>${calculateTotal(items).toFixed(2)}</span>
           </div>
-          <Link href="/cart">
+          <Link href="/cart/checkout">
             <a onClick={closeModal} className={css.cartBtn}>
-              View Shopping Cart
+              Go to checkout
             </a>
           </Link>
-          <Link href="/cart/checkout">
+          <Link href="/cart">
             <a onClick={closeModal} className={css.checkoutBtn}>
-              Go to checkout
+              View Shopping Cart
             </a>
           </Link>
         </div>
