@@ -1,5 +1,5 @@
 import {IProductFilter} from '../types/product'
-import {cn, tw} from '../utils/helpers'
+import {cn} from '../utils/helpers'
 import {ChevronRightIcon} from './Svg'
 
 type PaginateProps = {
@@ -9,7 +9,7 @@ type PaginateProps = {
   isCentered?: boolean
 }
 
-const css = tw({
+const css = {
   nav: 'mt-12 sm:mt-16 flex items-center space-x-5',
   label: 'text-gray-600',
   controls: 'flex items-center space-x-3',
@@ -20,7 +20,7 @@ const css = tw({
   btnFaded: 'bg-gray-200',
   prevArrow: 'w-5 -scale-x-100',
   nextArrow: 'w-5',
-})
+}
 
 const Paginate = ({setFilter, page, pages}: PaginateProps) => {
   const handlePageClick = (selected: number) => {
@@ -28,7 +28,7 @@ const Paginate = ({setFilter, page, pages}: PaginateProps) => {
       return
     }
 
-    window?.scrollTo({top: 0})
+    window?.scrollTo({top: 0, behavior: 'smooth'})
 
     setFilter((filter: IProductFilter) => ({
       ...filter,
