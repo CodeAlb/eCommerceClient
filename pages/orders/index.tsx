@@ -15,6 +15,7 @@ const css = {
   status: 'uppercase font-medium text-xs inline-flex items-center px-2 py-1 rounded text-white',
   statusGreen: 'bg-green-600',
   statusRed: 'bg-orange-300',
+  warning: 'text-center',
 }
 
 const STRUCTURE = [
@@ -58,7 +59,7 @@ const QUERY_FILTER = {
 }
 
 const Orders = () => {
-  const {data, isLoading, isFetching} = useGetMyOrdersQuery()
+  const {data, isLoading, isFetching, isError, error} = useGetMyOrdersQuery()
   const {orders, found} = data || {}
   const showLoader = isLoading || isFetching
 
@@ -67,13 +68,17 @@ const Orders = () => {
       <NextSeo title="My Orders" />
       <Hero title="My Orders" />
       <div className={css.body}>
-        <DataTable
-          isLoading={showLoader}
-          skeletons={QUERY_FILTER.limit}
-          basePath="/orders"
-          data={orders as any}
-          structure={STRUCTURE}
-        />
+        {!showLoader && isError ? (
+          <p className={css.warning}>{(error as any)?.data?.message}</p>
+        ) : (
+          <DataTable
+            isLoading={showLoader}
+            skeletons={QUERY_FILTER.limit}
+            basePath="/orders"
+            data={orders as any}
+            structure={STRUCTURE}
+          />
+        )}
       </div>
     </div>
   )
