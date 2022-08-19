@@ -20,6 +20,7 @@ export interface IOrderItem {
 }
 
 export interface IOrder {
+  _id: string
   shippingInfo: IShippingInfo
   user: string
   orderItems: IOrderItem[]
@@ -32,6 +33,11 @@ export interface IOrder {
   orderStatus: string
   deliveredAt: Date
   createdAt: Date
+}
+
+export interface IOrderResponse {
+  success: boolean
+  order: IOrder
 }
 
 export interface IOrdersResponse {
