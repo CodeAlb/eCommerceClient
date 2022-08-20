@@ -56,7 +56,7 @@ const DataTable = (props: DataTableProps) => {
       {isLoading ? (
         <div className={css.skeletons}>
           {fillArray(skeletons || 10, 0).map((_, i) => (
-            <div className={cn(css.skeletonItem, skeletonClassName)} />
+            <div key={i} className={cn(css.skeletonItem, skeletonClassName)} />
           ))}
         </div>
       ) : (
