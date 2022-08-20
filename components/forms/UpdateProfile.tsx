@@ -44,7 +44,7 @@ const UpdateProfileForm = () => {
     if (isSuccess) {
       dispatch(updateUserData(originalArgs))
     }
-  }, [isSuccess])
+  }, [isSuccess, dispatch, originalArgs])
 
   const sendFormData = (data: any) => {
     if (!isLoading) {
