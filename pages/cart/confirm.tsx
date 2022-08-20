@@ -146,7 +146,7 @@ const ConfirmPage: NextPage = () => {
     if (!shippingInfo?.address) {
       push('/cart/checkout')
     }
-  }, [])
+  }, [push])
 
   return (
     <div className={css.main}>
