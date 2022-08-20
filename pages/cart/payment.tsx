@@ -25,7 +25,7 @@ const Payment = () => {
     if (!shippingInfo?.address) {
       push('/cart/checkout')
     }
-  }, [])
+  }, [push])
 
   return (
     <Elements stripe={stripePromise}>
