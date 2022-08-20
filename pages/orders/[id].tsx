@@ -12,9 +12,9 @@ type OrderPageProps = {
 const css = {
   main: 'pb-12 sm:pb-16',
   order: 'max-w-3xl mx-auto px-4 space-y-8 sm:space-y-10',
-  section: 'p-4 sm:p-6 md:p-8 shadow-md border border-gray-300 rounded',
+  section: 'p-4 sm:p-6 md:p-8 shadow border border-gray-200 rounded',
   sectionTitle:
-    'text-xl border-b border-gray-300 sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-4 pb-2 sm:pb-4',
+    'text-xl border-b border-gray-200 sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-4 pb-2 sm:pb-4',
   meta: 'space-y-3',
   metaKey: 'font-medium mr-4',
   metaValue: 'text-gray-600',
