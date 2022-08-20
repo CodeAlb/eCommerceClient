@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import {ReactNode} from 'react'
-import {getAuthState} from '../store/slices/authReducer'
-import {useSelector} from '../store/store'
 import {DASHBOARD_LINKS} from '../utils/constants'
 import ActiveLink from './hoc/ActiveLink'
 import MyAccount from './MyAccount'
@@ -127,8 +125,6 @@ const MapLinkIcon = ({path}: {path: string}) => {
 }
 
 const Dashboard = ({children}: DashboardProps) => {
-  const {user} = useSelector(getAuthState)
-
   return (
     <div className={css.wrapper}>
       <header className={css.header}>
@@ -150,15 +146,14 @@ const Dashboard = ({children}: DashboardProps) => {
             {DASHBOARD_LINKS.map(({title, path}, i) => (
               <li key={i} className={css.menuItem}>
                 <ActiveLink
-                  exact={path === '/admin'}
+                  isExact={path === '/dashboard'}
                   href={path}
+                  className={css.menuLink}
                   onClassName={css.menuLinkOn}
                   offClassName={css.menuLinkOff}
                 >
-                  <a className={css.menuLink}>
-                    <MapLinkIcon path={path} />
-                    {title}
-                  </a>
+                  <MapLinkIcon path={path} />
+                  {title}
                 </ActiveLink>
               </li>
             ))}
