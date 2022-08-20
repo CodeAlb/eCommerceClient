@@ -1,41 +1,45 @@
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import {Children, cloneElement, ReactNode} from 'react'
+import {ReactNode} from 'react'
+import {cn} from '../../utils/helpers'
 
 // Types.
 interface ActiveLinkProps {
   href: string
-  children: ReactNode
+  className?: string
   onClassName?: string
   offClassName?: string
+  children?: ReactNode
   isExact?: boolean
   [props: string]: any
 }
 
-// Component.
-export default function ActiveLink({
+const ActiveLink = ({
   href,
-  children,
+  className,
   onClassName,
   offClassName,
-  isExact = true,
-  ...props
-}: ActiveLinkProps) {
+  children,
+  isExact,
+  ...restProps
+}: ActiveLinkProps) => {
   const {asPath} = useRouter()
-  const child = Children.only(children) as any
-  const childClassName = child.props.className || ''
-  const linkPath = asPath || props.as
-
-  const className =
-    linkPath === href || (!isExact && linkPath.startsWith(`${href}/`))
-      ? `${childClassName} ${onClassName}`.trim()
-      : `${childClassName} ${offClassName}`.trim()
 
   return (
-    <Link href={href} {...props}>
-      {cloneElement(child, {
-        className: className || null,
-      })}
+    <Link href={href}>
+      <a
+        className={cn(
+          className,
+          asPath === href || (!isExact && asPath.startsWith(`${href}/`))
+            ? onClassName
+            : offClassName
+        )}
+        {...restProps}
+      >
+        {children}
+      </a>
     </Link>
   )
 }
+
+export default ActiveLink
