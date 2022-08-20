@@ -14,7 +14,7 @@ const Boot = () => {
   useEffect(() => {
     dispatch(setCartItems(getLocalStorage('cartItems', [])))
     dispatch(addShippingInfo(getLocalStorage('shippingInfo', {})))
-  }, [])
+  }, [dispatch])
 
   return null
 }
