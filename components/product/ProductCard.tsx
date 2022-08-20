@@ -2,7 +2,6 @@ import Link from 'next/link'
 import {IProductCard} from '../../types/product'
 import {numToPrice} from '../../utils/helpers'
 import StarRating from '../StarRating'
-import ProductStarReviews from './ProductStarReviews'
 
 const css = {
   wrapper: '',
@@ -27,7 +26,7 @@ const ProductCard = ({name, price, oldPrice, images, ratings, numOfReviews, _id}
       <Link href={`/product/${_id}`}>
         <a className={css.link}>
           <div className={css.media}>
-            <img src={mainImageUrl} className={css.image} />
+            <img src={mainImageUrl} className={css.image} alt={name} />
           </div>
           <div className={css.body}>
             <div className={css.ratings}>
