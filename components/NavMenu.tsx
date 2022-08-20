@@ -24,11 +24,14 @@ const NavMenu = ({className}: NavMenuProps) => {
     <ul className={cn(css.wrapper, className)}>
       {NAV_LINKS.map(({title, path}, i: number) => (
         <li key={i} className={css.item}>
-          <ActiveLink href={path} onClassName={css.linkActive} offClassName={css.linkNormal}>
-            <a className={css.link}>
-              {title}
-              <i />
-            </a>
+          <ActiveLink
+            href={path}
+            className={css.link}
+            onClassName={css.linkActive}
+            offClassName={css.linkNormal}
+          >
+            {title}
+            <i />
           </ActiveLink>
         </li>
       ))}
