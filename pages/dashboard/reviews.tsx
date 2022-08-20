@@ -5,15 +5,15 @@ import {useRouter} from 'next/router'
 import {Fragment, useState} from 'react'
 import DataTable from '../../components/DataTable'
 import SearchForm from '../../components/elements/SearchForm'
-import {ArrowRightIcon, StarEmptyIcon, StarFilledIcon} from '../../components/Svg'
+import StarRating from '../../components/StarRating'
+import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllReviewsQuery} from '../../store/api/baseApi'
-import {fillArray} from '../../utils/helpers'
 import {timeAgo} from '../../utils/timeAgo'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
   actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
-  stars: 'mr-4 sm:mr-5 text-orange-600/60 mr-2 flex items-center [&>*]:w-4',
+  stars: 'flex items-center [&>*]:w-4',
   searchForm: 'mb-10 sm:mb-12',
   body: '',
 }
@@ -23,9 +23,7 @@ const STRUCTURE = [
     title: 'Rating',
     selector: (r: any) => (
       <div className={css.stars}>
-        {fillArray(5).map((n, i) => (
-          <Fragment key={i}>{r.rating >= i + 1 ? <StarFilledIcon /> : <StarEmptyIcon />}</Fragment>
-        ))}
+        <StarRating rating={r.rating} />
       </div>
     ),
     className: 'col-span-2',
