@@ -1,7 +1,7 @@
 import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
+import {ArrowRightIcon} from '@heroicons/react/outline'
 import DataTable from '../../../components/DataTable'
-import {ArrowRightIcon} from '../../../components/Svg'
 import {useGetAllOrdersQuery} from '../../../store/api/baseApi'
 import {cn, numToPrice} from '../../../utils/helpers'
 import {timeAgo} from '../../../utils/timeAgo'
