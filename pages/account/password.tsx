@@ -25,7 +25,7 @@ const PasswordPage: NextPage = () => {
 export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
-      withAuth: true,
+      withAuth: true
     },
   }
 }
