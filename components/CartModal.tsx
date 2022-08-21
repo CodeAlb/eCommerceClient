@@ -40,16 +40,16 @@ const CartModal = () => {
   const {isCartOpen, items} = useSelector(getCartState)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    const body = document.body.classList
-    if (isCartOpen) {
-      body.add('fixed')
-      body.add('inset-0')
-    } else {
-      body.remove('fixed')
-      body.remove('inset-0')
-    }
-  }, [isCartOpen])
+  // useEffect(() => {
+  //   const body = document.body.classList
+  //   if (isCartOpen) {
+  //     body.add('fixed')
+  //     body.add('inset-0')
+  //   } else {
+  //     body.remove('fixed')
+  //     body.remove('inset-0')
+  //   }
+  // }, [isCartOpen])
 
   const closeModal = () => {
     dispatch(closeCart())
