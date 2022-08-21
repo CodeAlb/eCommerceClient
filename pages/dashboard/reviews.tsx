@@ -1,19 +1,18 @@
 import {skipToken} from '@reduxjs/toolkit/dist/query'
-import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
-import {useRouter} from 'next/router'
-import {Fragment, useState} from 'react'
+import {GetStaticProps} from 'next'
+import {ArrowRightIcon} from '@heroicons/react/outline'
+import {useState} from 'react'
 import DataTable from '../../components/DataTable'
 import SearchForm from '../../components/elements/SearchForm'
 import StarRating from '../../components/StarRating'
-import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllReviewsQuery} from '../../store/api/baseApi'
 import {timeAgo} from '../../utils/timeAgo'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
   actionIcon: 'w-6 text-gray-400 group-hover:text-orange-600',
-  stars: 'flex items-center [&>*]:w-4',
+  stars: 'flex items-center [&_svg]:w-4',
   searchForm: 'mb-10 sm:mb-12',
   body: '',
 }

@@ -1,6 +1,6 @@
-import {FormEvent, useEffect, useRef, useState} from 'react'
+import {FormEvent, useEffect, useRef} from 'react'
+import {SearchIcon} from '@heroicons/react/outline'
 import {cn} from '../../utils/helpers'
-import {SearchIcon} from '../Svg'
 
 type SearchFormProps = {
   onSubmitValue: (value: any) => void

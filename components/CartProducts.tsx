@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import {MinusIcon, PlusIcon, XIcon} from '@heroicons/react/outline'
 import {
   decrementAmount,
   deleteCartItem,
@@ -7,7 +8,6 @@ import {
 } from '../store/slices/cartReducer'
 import {useDispatch, useSelector} from '../store/store'
 import {cn} from '../utils/helpers'
-import {CloseIcon, MinusIcon, PlusIcon} from './Svg'
 
 type CartProductsProps = {
   isModal?: boolean
@@ -102,7 +102,7 @@ const CartProducts = ({isModal = false}: CartProductsProps) => {
                 dispatch(deleteCartItem(item))
               }}
             >
-              <CloseIcon className={css.removeIcon} />
+              <XIcon className={css.removeIcon} />
             </button>
             <img
               src={item.image}

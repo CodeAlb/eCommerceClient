@@ -1,6 +1,6 @@
+import {ChevronRightIcon, ChevronLeftIcon} from '@heroicons/react/outline'
 import {IProductFilter} from '../types/product'
 import {cn} from '../utils/helpers'
-import {ChevronRightIcon} from './Svg'
 
 type PaginateProps = {
   setFilter: (filter: any) => any
@@ -18,8 +18,7 @@ const css = {
   btn: 'text-white p-2 rounded-full',
   btnDefault: 'bg-black hover:bg-gray-800 duration-150',
   btnFaded: 'bg-gray-200',
-  prevArrow: 'w-5 -scale-x-100',
-  nextArrow: 'w-5',
+  arrow: 'w-5',
 }
 
 const Paginate = ({setFilter, page, pages}: PaginateProps) => {
@@ -48,7 +47,7 @@ const Paginate = ({setFilter, page, pages}: PaginateProps) => {
             className={cn(css.btn, page > 1 ? css.btnDefault : css.btnFaded)}
             onClick={() => handlePageClick(page - 1)}
           >
-            <ChevronRightIcon className={css.prevArrow} />
+            <ChevronLeftIcon className={css.arrow} />
           </button>
         </li>
         <li className={css.next}>
@@ -56,7 +55,7 @@ const Paginate = ({setFilter, page, pages}: PaginateProps) => {
             className={cn(css.btn, page < pages ? css.btnDefault : css.btnFaded)}
             onClick={() => handlePageClick(page + 1)}
           >
-            <ChevronRightIcon className={css.nextArrow} />
+            <ChevronRightIcon className={css.arrow} />
           </button>
         </li>
       </ul>

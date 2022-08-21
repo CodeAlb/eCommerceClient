@@ -1,3 +1,4 @@
+import {UserIcon, MenuIcon} from '@heroicons/react/outline'
 import Link from 'next/link'
 import {useState} from 'react'
 import useOnClickOutside from '../hooks/onClickOutside'
@@ -5,7 +6,6 @@ import {fetchLogout, getAuthState} from '../store/slices/authReducer'
 import {useDispatch, useSelector} from '../store/store'
 import {ADMIN_LINKS, GUEST_LINKS, USER_LINKS} from '../utils/constants'
 import {cn} from '../utils/helpers'
-import {BurgerIcon, UserIcon} from './Svg'
 
 type MyAccountProps = {
   className?: string
@@ -20,7 +20,7 @@ const css = {
     'inline-flex items-center justify-center rounded-full h-6 w-6 font-bold text-xs uppercase',
   avatarUser: 'bg-black dark:bg-white text-white dark:text-black',
   avatarGuest: 'bg-gray-500 text-white',
-  userIcon: 'w-5',
+  userIcon: 'w-4',
   burger: 'w-5 text-black dark:text-white ml-1.5 mr-3.5',
   menu: 'z-10 absolute top-full right-0 mt-2 py-3 bg-white w-48 rounded border border-gray-200 shadow-[1px_2px_3px_#ddd]',
   item: '',
@@ -54,7 +54,7 @@ const MyAccount = ({className, isDashboard}: MyAccountProps) => {
   return (
     <div ref={ref} className={cn(css.wrapper, className, isDashboard && 'dark')}>
       <button onClick={toggleMenu} className={cn(css.btn, isOpen && css.btnOpen)}>
-        <BurgerIcon className={css.burger} />
+        <MenuIcon className={css.burger} />
         <span className={cn(css.avatar, accessToken ? css.avatarUser : css.avatarGuest)}>
           {accessToken ? user.name.slice(0, 1) : <UserIcon className={css.userIcon} />}
         </span>

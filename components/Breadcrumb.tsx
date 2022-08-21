@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {cn} from '../utils/helpers'
-import {ArrowNarrowRightIcon} from './Svg'
+import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
 
 type BreadcrumbLink = {
   title: string

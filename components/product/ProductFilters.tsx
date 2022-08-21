@@ -1,7 +1,6 @@
 import {useState} from 'react'
 import {IProductFilter} from '../../types/product'
 import {cn, fillArray} from '../../utils/helpers'
-import {StarEmptyIcon, StarFilledIcon} from '../Svg'
 import RangeSlider from '../elements/RangeSlider'
 import StarRating from '../StarRating'
 
@@ -12,7 +11,7 @@ interface ProductFiltersProps {
 
 const css = {
   wrapper: 'md:col-span-3 order-2 mt-12 md:mt-0 md:order-1',
-  filterTitle: 'font-medium mb-6 text-xl uppercase mb-2',
+  filterTitle: 'font-medium text-xl uppercase mb-2',
   filters: 'space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-16',
   filter: 'max-w-sm mx-auto sm:mx-0',
   categoryActive: 'opacity-50 line-through',
@@ -20,7 +19,7 @@ const css = {
   action: '',
   applyBtn:
     'rounded px-2 h-6 bg-white border border-black text-black font-medium uppercase text-xs tracking-wider hover:bg-black hover:text-white duration-150',
-  stars: 'mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&_svg]:w-4',
   filterList: 'space-y-1',
 }
 

@@ -1,6 +1,6 @@
 import {useState} from 'react'
+import {EyeIcon, EyeOffIcon} from '@heroicons/react/outline'
 import {cn} from '../../utils/helpers'
-import {EyeClosedIcon, EyeOpenIcon} from '../Svg'
 
 type InputProps = {
   name: string
@@ -65,7 +65,7 @@ export const PasswordInput = ({
             setVisible(!visible)
           }}
         >
-          {visible ? <EyeOpenIcon className={css.eye} /> : <EyeClosedIcon className={css.eye} />}
+          {visible ? <EyeIcon className={css.eye} /> : <EyeOffIcon className={css.eye} />}
         </button>
       </div>
     </div>

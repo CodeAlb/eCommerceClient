@@ -15,7 +15,7 @@ const css = {
 
   name: 'text-2xl sm:text-3xl font-medium text-black uppercase',
   ratings: 'mt-4 flex items-center',
-  stars: 'mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&_svg]:w-4',
   reviews: 'text-sm text-gray-500',
   price: 'mt-4 text-xl sm:text-2xl text-black flex items-center font-medium',
   oldPrice: 'line-through mr-4 text-gray-500',

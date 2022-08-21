@@ -1,9 +1,9 @@
-import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
+import {GetStaticProps} from 'next'
 import {useState} from 'react'
+import {ArrowRightIcon} from '@heroicons/react/outline'
 import DataTable from '../../components/DataTable'
 import Paginate from '../../components/Paginate'
-import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllProductsQuery} from '../../store/api/baseApi'
 import {IProductFilter} from '../../types/product'
 import {numToPrice} from '../../utils/helpers'
@@ -80,6 +80,7 @@ const AdminProducts = () => {
     </div>
   )
 }
+
 
 export const getStaticProps: GetStaticProps = () => {
   return {

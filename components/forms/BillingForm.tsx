@@ -1,10 +1,10 @@
 import {useRouter} from 'next/router'
 import {useForm} from 'react-hook-form'
+import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
 import {addShippingInfo} from '../../store/slices/cartReducer'
 import {useDispatch} from '../../store/store'
 import {getLocalStorage} from '../../utils/helpers'
 import Input from '../fields/Input'
-import {ArrowNarrowRightIcon} from '../Svg'
 
 interface BillingFormProps {
   onSubmitForm?: () => void

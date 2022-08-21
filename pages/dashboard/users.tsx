@@ -1,7 +1,7 @@
-import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
+import {GetStaticProps} from 'next'
+import {ArrowRightIcon} from '@heroicons/react/outline'
 import DataTable from '../../components/DataTable'
-import {ArrowRightIcon} from '../../components/Svg'
 import {useGetAllUsersQuery} from '../../store/api/baseApi'
 
 const css = {

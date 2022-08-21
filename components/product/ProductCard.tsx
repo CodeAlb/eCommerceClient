@@ -14,7 +14,7 @@ const css = {
   oldPrice: 'line-through mr-4 text-gray-500',
   name: 'text-black truncate',
   ratings: 'flex items-center',
-  stars: 'mr-2 flex items-center [&>*]:w-4',
+  stars: 'mr-2 flex items-center [&_svg]:w-4',
   reviews: 'text-sm text-gray-500',
 }
 

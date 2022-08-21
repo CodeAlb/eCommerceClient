@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {ArrowNarrowRightIcon} from '../Svg'
+import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
 
 interface MainHeroProps {}
 

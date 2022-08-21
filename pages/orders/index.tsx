@@ -1,5 +1,5 @@
 import {GetStaticProps} from 'next'
-import {ArrowRightIcon} from '../../components/Svg'
+import {ArrowRightIcon} from '@heroicons/react/outline'
 import Hero from '../../components/elements/Hero'
 import {useGetMyOrdersQuery} from '../../store/api/baseApi'
 import {cn, numToPrice} from '../../utils/helpers'

@@ -1,11 +1,12 @@
 import {useMemo} from 'react'
 import {cn} from '../utils/helpers'
-import {StarIcon} from './Svg'
+import {StarIcon} from '@heroicons/react/outline'
 
 const css = {
   emptyStar: 'text-orange-400',
-  halfStar: 'text-orange-400 [&_.half]:fill-orange-400',
   fullStar: 'text-orange-400 fill-orange-400',
+  starWrapper: 'relative',
+  halfWrapper: 'absolute left-0 top-0 overflow-hidden w-1/2',
 }
 
 interface StarRatingProps {
@@ -22,25 +23,30 @@ const StarRating = ({className, rating, hasHalfStars}: StarRatingProps) => {
     const starList = Array(MAX_STARS).fill(1)
 
     return starList.map((_, i) => {
-      let starClassName = css.emptyStar
-
       if (hasHalfStars) {
         const halfRoundedRating = Number((Math.round(rating * 2) / 2).toFixed(1))
 
         if (halfRoundedRating >= i + 1) {
-          starClassName = css.fullStar
+          return <StarIcon key={i} className={cn(className, css.fullStar)} />
         } else if (halfRoundedRating === i + 0.5) {
-          starClassName = css.halfStar
+          return (
+            <span className={css.starWrapper}>
+              <StarIcon key={i} className={cn(className, css.emptyStar)} />
+              <span className={css.halfWrapper}>
+                <StarIcon key={i} className={cn(className, css.fullStar)} />
+              </span>
+            </span>
+          )
         }
       } else {
         const roundedRating = Math.round(rating)
 
         if (roundedRating > i) {
-          starClassName = css.fullStar
+          return <StarIcon key={i} className={cn(className, css.fullStar)} />
         }
       }
 
-      return <StarIcon key={i} className={cn(className, starClassName)} />
+      return <StarIcon key={i} className={cn(className, css.emptyStar)} />
     })
   }, [rating, hasHalfStars, className])
 

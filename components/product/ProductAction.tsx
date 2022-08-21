@@ -1,9 +1,9 @@
 import {useState} from 'react'
+import {MinusIcon, PlusIcon} from '@heroicons/react/outline'
 import {IProduct} from '../../types/product'
 import {addToCard} from '../../store/slices/cartReducer'
 import {useDispatch} from '../../store/store'
 import {cn} from '../../utils/helpers'
-import {MinusIcon, PlusIcon} from '../Svg'
 
 interface ProductActionProps {
   product?: IProduct

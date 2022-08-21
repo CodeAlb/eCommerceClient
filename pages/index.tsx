@@ -1,8 +1,8 @@
 import type {NextPage} from 'next'
 import Link from 'next/link'
+import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
 import MainHero from '../components/elements/MainHero'
 import ProductGrid from '../components/product/ProductGrid'
-import {ArrowNarrowRightIcon} from '../components/Svg'
 import {useGetAllProductsQuery} from '../store/api/baseApi'
 
 const css = {

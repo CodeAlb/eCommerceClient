@@ -28,7 +28,7 @@ const css = {
   badge:
     'ml-2 px-1 py-1 leading-none rounded text-[10px] tracking-wider uppercase bg-gray-400 text-white',
   ratings: 'flex items-center',
-  stars: 'sm:mr-5 mr-2 flex items-center [&>*]:w-4',
+  stars: 'sm:mr-5 mr-2 flex items-center [&_svg]:w-4',
   createdAt: 'text-sm text-gray-500',
   comment: 'mt-2 text-gray-500',
   createBtn:

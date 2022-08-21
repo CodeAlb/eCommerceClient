@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
+import {StarIcon} from '@heroicons/react/outline'
 import {useCreateReviewMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import Textarea from '../fields/Textarea'
-import {StarIcon} from '../Svg'
 
 const css = {
   wrapper: 'mt-4 sm:mt-6',
@@ -11,7 +11,7 @@ const css = {
   fields: 'space-y-4',
   label: 'inline-flex sm:text-lg mb-1',
   ratings: '',
-  stars: 'flex items-center [&>*]:w-7 [&:hover_svg]:fill-orange-400',
+  stars: 'flex items-center [&_svg]:w-7 [&:hover_svg]:fill-orange-400',
   starBtn: '[&:hover~button>svg]:fill-[none]',
   emptyStar: 'text-orange-400',
   fullStar: 'text-orange-400 fill-orange-400',

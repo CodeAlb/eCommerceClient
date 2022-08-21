@@ -1,6 +1,6 @@
+import {ShoppingBagIcon} from '@heroicons/react/outline'
 import {getCartState, openCart} from '../store/slices/cartReducer'
 import {useDispatch, useSelector} from '../store/store'
-import {ShoppingBagIcon} from './Svg'
 
 type CartToggleProps = {
   className?: string
@@ -9,7 +9,7 @@ type CartToggleProps = {
 const css = {
   wrapper: 'relative flex items-center',
   btn: 'relative duration-150 hover:opacity-75',
-  icon: 'w-7 h-7 text-black',
+  icon: 'w-6 h-6 text-black',
   badge:
     'absolute -top-0.5 -right-0.5 px-1 rounded-full bg-red-600 text-white text-[10px] font-bold',
 }
