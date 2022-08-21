@@ -1,7 +1,6 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 import {useGetOrderQuery} from '../../../store/api/baseApi'
 import {NextSeo} from 'next-seo'
-import Hero from '../../../components/elements/Hero'
 import {timeAgo} from '../../../utils/timeAgo'
 import {numToPrice} from '../../../utils/helpers'
 
