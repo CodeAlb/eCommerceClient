@@ -5,6 +5,12 @@ export const DIR_PATHS = {
   dashboard: '/dashboard',
 }
 
+export const NAV_LINKS = [
+  {title: 'Products', path: '/shop'},
+  {title: 'About Us', path: '/about-us'},
+  {title: 'Contact', path: '/contact'},
+]
+
 export const GUEST_LINKS = [
   {title: 'Register', path: `${DIR_PATHS.auth}/register`},
   {title: 'Login', path: `${DIR_PATHS.auth}/login`},
