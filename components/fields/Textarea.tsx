@@ -6,6 +6,7 @@ type InputProps = {
   errors?: any
   type?: 'text' | 'email'
   label: string
+  minHeight?: number
   placeholder?: string
   options?: any
   watch?: any
@@ -20,7 +21,7 @@ const css = {
   labelError: 'text-red-600',
   labelNormal: 'text-black',
   control: 'relative',
-  input: 'w-full min-h-[120px] sm:text-lg p-2 sm:p-4 border border-black',
+  input: 'w-full sm:text-lg p-2 sm:p-4 border border-black',
 }
 
 const Textarea = ({
@@ -30,6 +31,7 @@ const Textarea = ({
   type = 'text',
   options,
   register,
+  minHeight = 120,
   errors,
   hints,
 }: InputProps) => {
@@ -48,6 +50,9 @@ const Textarea = ({
         spellCheck="false"
         placeholder={placeholder}
         className={cn(css.control, css.input)}
+        style={{
+          minHeight: `${minHeight}px`
+        }}
         {...register(name, options)}
       />
     </div>
