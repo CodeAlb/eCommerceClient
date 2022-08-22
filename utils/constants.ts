@@ -1,3 +1,12 @@
+export const DIR_PATHS = {
+  account: '/account',
+  auth: '/auth',
+  cart: '/cart',
+  dashboard: '/dashboard',
+  orders: '/orders',
+  product: '/product',
+}
+
 export const GUEST_LINKS = [
   {title: 'Register', path: '/auth/register'},
   {title: 'Login', path: '/auth/login'},
@@ -22,3 +31,5 @@ export const DASHBOARD_LINKS = [
 export const PRODUCT_CATEGORIES = ['Chair', 'Lamp', 'Drawer', 'Table', 'Clock']
 
 export const PRODUCT_SELLERS = ['eBay']
+
+export const USER_ROLES = ['user', 'admin']
