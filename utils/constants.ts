@@ -18,3 +18,7 @@ export const DASHBOARD_LINKS = [
   {title: 'Users', path: '/dashboard/users'},
   {title: 'Reviews', path: '/dashboard/reviews'},
 ]
+
+export const PRODUCT_CATEGORIES = ['Chair', 'Lamp', 'Drawer', 'Table', 'Clock']
+
+export const PRODUCT_SELLERS = ['eBay']
