@@ -2,6 +2,7 @@ import Link from 'next/link'
 import {useEffect} from 'react'
 import {closeCart, getCartState} from '../store/slices/cartReducer'
 import {useDispatch, useSelector} from '../store/store'
+import {DIR_PATHS} from '../utils/constants'
 import {cn} from '../utils/helpers'
 import CartProducts from './CartProducts'
 
@@ -73,12 +74,12 @@ const CartModal = () => {
             <span className={css.totalTitle}>Total:</span>
             <span className={css.totalPrice}>${calculateTotal(items).toFixed(2)}</span>
           </div>
-          <Link href="/cart/checkout">
+          <Link href={`${DIR_PATHS.cart}/checkout`}>
             <a onClick={closeModal} className={css.cartBtn}>
               Go to checkout
             </a>
           </Link>
-          <Link href="/cart">
+          <Link href={DIR_PATHS.cart}>
             <a onClick={closeModal} className={css.checkoutBtn}>
               View Shopping Cart
             </a>

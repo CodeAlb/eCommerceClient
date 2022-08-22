@@ -8,6 +8,7 @@ import {useGetAllProductsQuery} from '../../../store/api/baseApi'
 import {IProductFilter} from '../../../types/product'
 import {numToPrice} from '../../../utils/helpers'
 import Link from 'next/link'
+import {DIR_PATHS} from '../../../utils/constants'
 
 const css = {
   headline: 'mb-6 sm:mb-8 md:mb-10 flex items-center',
@@ -72,7 +73,7 @@ const AdminProducts = () => {
       <NextSeo title="All Products" />
       <div className={css.headline}>
         <h1 className={css.title}>Products</h1>
-        <Link href="/dashboard/products/new">
+        <Link href={`${DIR_PATHS.dashboard}/products/new`}>
           <a className={css.newBtn}>Add New</a>
         </Link>
       </div>
@@ -80,7 +81,7 @@ const AdminProducts = () => {
         <DataTable
           isLoading={showLoader}
           skeletons={QUERY_FILTER.limit}
-          basePath="/dashboard/products"
+          basePath={`${DIR_PATHS.dashboard}/products`}
           data={products as any}
           structure={STRUCTURE}
         />

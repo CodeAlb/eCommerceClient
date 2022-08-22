@@ -2,6 +2,7 @@ import Link from 'next/link'
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {useLoginUserMutation} from '../../store/api/baseApi'
+import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 import Input from '../fields/Input'
 
@@ -67,7 +68,7 @@ const ForgotPasswordForm = () => {
       {errorMessage && <div className={css.warning}>{errorMessage}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
-        <Link href="/auth/login">
+        <Link href={`${DIR_PATHS.auth}/login`}>
           <a className={css.refLink}>Back To Login</a>
         </Link>
       </div>

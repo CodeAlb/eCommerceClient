@@ -8,6 +8,7 @@ import PaymentSteps from '../../components/elements/PaymentStep'
 import Hero from '../../components/elements/Hero'
 import StripeForm from '../../components/forms/StripeForm'
 import {NextSeo} from 'next-seo'
+import {DIR_PATHS} from '../../utils/constants'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
 
@@ -23,7 +24,7 @@ const Payment = () => {
 
   useEffect(() => {
     if (!shippingInfo?.address) {
-      push('/cart/checkout')
+      push(`${DIR_PATHS.cart}/checkout`)
     }
   }, [push])
 

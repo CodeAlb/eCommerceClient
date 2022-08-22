@@ -5,6 +5,7 @@ import {addShippingInfo} from '../../store/slices/cartReducer'
 import {useDispatch} from '../../store/store'
 import {getLocalStorage} from '../../utils/helpers'
 import Input from '../fields/Input'
+import {DIR_PATHS} from '../../utils/constants'
 
 interface BillingFormProps {
   onSubmitForm?: () => void
@@ -32,7 +33,7 @@ const BillingForm = ({onSubmitForm}: BillingFormProps) => {
 
   const storeFormData = (data: any) => {
     dispatch(addShippingInfo(data))
-    push('/cart/confirm')
+    push(`${DIR_PATHS.cart}/confirm`)
   }
 
   return (

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {useForm} from 'react-hook-form'
 import {useUpdateUserPasswordMutation} from '../../store/api/baseApi'
+import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 import {PasswordInput} from '../fields/Input'
 
@@ -85,7 +86,7 @@ const ChangePasswordForm = () => {
         >
           Update
         </button>
-        <Link href="/account">
+        <Link href={DIR_PATHS.account}>
           <a className={css.resetLink}>Change profile?</a>
         </Link>
       </div>

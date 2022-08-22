@@ -2,6 +2,7 @@ import Link from 'next/link'
 import {useForm} from 'react-hook-form'
 import {useLoginUserMutation} from '../../store/api/baseApi'
 import {IUserLogin} from '../../types/user'
+import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 import Input, {PasswordInput} from '../fields/Input'
 
@@ -77,14 +78,14 @@ const LoginForm = () => {
         >
           Login
         </button>
-        <Link href="/auth/forgot">
+        <Link href={`${DIR_PATHS.auth}/forgot`}>
           <a className={css.resetLink}>Forgot password?</a>
         </Link>
       </div>
       {isError && <div className={css.warning}>{(error as any)?.data?.message}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
-        <Link href="/auth/register">
+        <Link href={`${DIR_PATHS.auth}/register`}>
           <a className={css.refLink}>Create New Account</a>
         </Link>
       </div>

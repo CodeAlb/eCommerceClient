@@ -1,7 +1,8 @@
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import {ReactNode} from 'react'
 import {getAuthState} from '../../store/slices/authReducer'
 import {useSelector} from '../../store/store'
+import {DIR_PATHS} from '../../utils/constants'
 
 type ProtectedProps = {
   withAuth?: boolean
@@ -27,10 +28,10 @@ const Protected = ({withAuth, userRoles, children}: ProtectedProps) => {
   }
   if (withAuth && !accessToken) {
     push({
-      pathname: '/auth/login',
+      pathname: `${DIR_PATHS.auth}/login`,
       query: {
-        from: '/shop'
-      }
+        from: '/shop',
+      },
     })
     return null
   }

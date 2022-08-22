@@ -9,6 +9,7 @@ import {calculateTotal, cn, numToPrice, setSessionStorage} from '../../utils/hel
 import Hero from '../../components/elements/Hero'
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
+import {DIR_PATHS} from '../../utils/constants'
 
 const css = {
   main: 'pb-12 sm:pb-16',
@@ -107,7 +108,7 @@ const SummaryStats = () => {
       totalPrice,
     }
     setSessionStorage('orderInfo', data)
-    push('/cart/payment')
+    push(`${DIR_PATHS.cart}/payment`)
   }
 
   return (
@@ -144,7 +145,7 @@ const ConfirmPage: NextPage = () => {
 
   useEffect(() => {
     if (!shippingInfo?.address) {
-      push('/cart/checkout')
+      push(`${DIR_PATHS.cart}/checkout`)
     }
   }, [push])
 

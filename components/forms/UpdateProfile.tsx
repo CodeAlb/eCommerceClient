@@ -5,6 +5,7 @@ import {useUpdateLoggedUserMutation} from '../../store/api/baseApi'
 import {getAuthState, updateUserData} from '../../store/slices/authReducer'
 import {useDispatch, useSelector} from '../../store/store'
 import {IUserLogin} from '../../types/user'
+import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 import Input from '../fields/Input'
 
@@ -93,7 +94,7 @@ const UpdateProfileForm = () => {
         >
           Update
         </button>
-        <Link href="/account/password">
+        <Link href={`${DIR_PATHS.account}/password`}>
           <a className={css.resetLink}>Change password?</a>
         </Link>
       </div>

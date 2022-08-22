@@ -5,6 +5,7 @@ import DataTable from '../../../components/DataTable'
 import {useGetAllOrdersQuery} from '../../../store/api/baseApi'
 import {cn, numToPrice} from '../../../utils/helpers'
 import {timeAgo} from '../../../utils/timeAgo'
+import {DIR_PATHS} from '../../../utils/constants'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
@@ -68,7 +69,7 @@ const AdminOrders = () => {
         <DataTable
           isLoading={showLoader}
           skeletons={QUERY_FILTER.limit}
-          basePath="/dashboard/orders"
+          basePath={`${DIR_PATHS.dashboard}/orders`}
           data={orders as any}
           structure={STRUCTURE}
         />

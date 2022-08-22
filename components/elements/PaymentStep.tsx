@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import {Fragment} from 'react'
+import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 
 interface PaymentStepList {
@@ -15,9 +16,9 @@ interface PaymentStepsProps {
 }
 
 const STEP_LIST: PaymentStepList[] = [
-  {name: 'checkout', path: '/cart/checkout'},
-  {name: 'confirm', path: '/cart/confirm'},
-  {name: 'payment', path: '/cart/payment'},
+  {name: 'checkout', path: `${DIR_PATHS.cart}/checkout`},
+  {name: 'confirm', path: `${DIR_PATHS.cart}/confirm`},
+  {name: 'payment', path: `${DIR_PATHS.cart}/payment`},
 ]
 
 const css = {

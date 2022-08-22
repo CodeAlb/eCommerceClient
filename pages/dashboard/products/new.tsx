@@ -2,6 +2,7 @@ import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
 import Link from 'next/link'
 import NewProductForm from '../../../components/forms/NewProductForm'
+import {DIR_PATHS} from '../../../utils/constants'
 
 const css = {
   headline: 'mb-6 sm:mb-8 md:mb-10 flex items-center',
@@ -16,7 +17,7 @@ const NewProduct = () => {
       <NextSeo title="Create Product" />
       <div className={css.headline}>
         <h1 className={css.title}>Add Product</h1>
-        <Link href="/dashboard/products">
+        <Link href={`${DIR_PATHS.dashboard}/products`}>
           <a className={css.cancelBtn}>Cancel</a>
         </Link>
       </div>

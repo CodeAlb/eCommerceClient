@@ -4,6 +4,7 @@ import CartProducts from '../../components/CartProducts'
 import Hero from '../../components/elements/Hero'
 import {getCartState} from '../../store/slices/cartReducer'
 import {useSelector} from '../../store/store'
+import {DIR_PATHS} from '../../utils/constants'
 import {calculateTotal, cn} from '../../utils/helpers'
 
 const css = {
@@ -50,7 +51,7 @@ const Cart = () => {
               </div>
             </div>
             {itemsCount > 0 ? (
-              <Link href="/cart/checkout">
+              <Link href={`${DIR_PATHS.cart}/checkout`}>
                 <a className={cn(css.checkoutBtn, css.checkoutNormal)}>Checkout</a>
               </Link>
             ) : (

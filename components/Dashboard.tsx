@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/outline'
 import Link from 'next/link'
 import {ReactNode} from 'react'
-import {DASHBOARD_LINKS} from '../utils/constants'
+import {DASHBOARD_LINKS, DIR_PATHS} from '../utils/constants'
 import ActiveLink from './hoc/ActiveLink'
 import MyAccount from './MyAccount'
 
@@ -43,13 +43,13 @@ const css = {
 
 const MapLinkIcon = ({path}: {path: string}) => {
   switch (path) {
-    case '/dashboard/products':
+    case `${DIR_PATHS.dashboard}/products`:
       return <CollectionIcon className={css.menuLinkIcon} />
-    case '/dashboard/orders':
+    case `${DIR_PATHS.dashboard}/orders`:
       return <ClipboardCheckIcon className={css.menuLinkIcon} />
-    case '/dashboard/users':
+    case `${DIR_PATHS.dashboard}/users`:
       return <UserGroupIcon className={css.menuLinkIcon} />
-    case '/dashboard/reviews':
+    case `${DIR_PATHS.dashboard}/reviews`:
       return <StarIcon className={css.menuLinkIcon} />
     default:
       return <PresentationChartBarIcon className={css.menuLinkIcon} />
@@ -78,7 +78,7 @@ const Dashboard = ({children}: DashboardProps) => {
             {DASHBOARD_LINKS.map(({title, path}, i) => (
               <li key={i} className={css.menuItem}>
                 <ActiveLink
-                  isExact={path === '/dashboard'}
+                  isExact={path === DIR_PATHS.dashboard}
                   href={path}
                   className={css.menuLink}
                   onClassName={css.menuLinkOn}
