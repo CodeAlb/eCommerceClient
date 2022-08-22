@@ -2,6 +2,7 @@ import {createApi} from '@reduxjs/toolkit/query/react'
 import {baseQueryWithReauth} from './baseQuery'
 import {IOrderResponse, IOrdersResponse} from '../../types/order'
 import {
+  IProduct,
   IProductCard,
   IProductFilter,
   IProductResponse,
@@ -103,6 +104,14 @@ export const baseApi = createApi({
         return [{type: 'Product', id: 'LIST'}]
       },
     }),
+    updateProduct: builder.mutation<any, IProduct>({
+      query: ({_id, ...data}) => ({
+        url: `admin/products/${_id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => [{type: 'Product', id: arg._id}],
+    }),
     getAllReviews: builder.query<any, string>({
       query: (productId) => {
         return `reviews/${productId}`
@@ -169,6 +178,7 @@ export const {
   useGetAllUsersQuery,
   useGetProductQuery,
   useGetAllProductsQuery,
+  useUpdateProductMutation,
   useGetAllReviewsQuery,
   useGetAllOrdersQuery,
   useGetOrderQuery,
