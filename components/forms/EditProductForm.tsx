@@ -1,37 +1,56 @@
 import {useForm} from 'react-hook-form'
+import {useUpdateProductMutation} from '../../store/api/baseApi'
+import {IProduct} from '../../types/product'
 import {PRODUCT_CATEGORIES, PRODUCT_SELLERS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
 import Input from '../fields/Input'
 import Select from '../fields/Select'
 import Textarea from '../fields/Textarea'
 
+interface EditProductFormProps {
+  product: IProduct
+}
+
 const css = {
   form: 'max-w-xl',
   fields: 'space-y-6',
   group: 'grid grid-cols-2 gap-4 sm:gap-6',
   action: 'mt-10 flex items-center justify-between',
-  warning: 'mt-6 text-red-600',
   submit:
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
   submitNormal: 'bg-black text-white hover:bg-gray-900',
+  message: 'mt-4 sm:mt-5 rounded-lg py-2 px-4 flex justify-between space-x-4',
+  messageSuccess: 'bg-green-50 text-green-800',
+  messageError: 'bg-red-50 text-red-800',
 }
 
-const EditProductForm = () => {
+const EditProductForm = ({product}: EditProductFormProps) => {
+  const {_id, name, price, oldPrice, description, excerpt, stock, seller, category} = product
   const {
     register,
     handleSubmit,
     watch,
     formState: {errors},
-  } = useForm<any>()
-  const isLoading = false
-  const isError = false
-  const error = {}
+  } = useForm<any>({
+    defaultValues: {
+      name,
+      price,
+      oldPrice: oldPrice || null,
+      description,
+      excerpt,
+      stock,
+      seller,
+      category,
+    },
+  })
+  const [updateProduct, {isLoading, isSuccess, isError, error, data}] = useUpdateProductMutation()
+  const message = (error as any)?.data?.message || data?.message || ''
+  console.log(data)
 
   const sendFormData = (data: any) => {
-    console.log(data)
     if (!isLoading) {
-      // createProduct(data)
+      updateProduct({_id, ...data})
     }
   }
 
@@ -92,7 +111,7 @@ const EditProductForm = () => {
           errors={errors}
         />
         <Textarea
-          name="exceprt"
+          name="excerpt"
           label="Excerpt"
           placeholder="Short description..."
           register={register}
@@ -133,7 +152,6 @@ const EditProductForm = () => {
             errors={errors}
           />
         </div>
-
         <Select
           name="category"
           label="Category"
@@ -158,7 +176,11 @@ const EditProductForm = () => {
           Update
         </button>
       </div>
-      {isError && <div className={css.warning}>{(error as any)?.data?.message}</div>}
+      {!isLoading && (isSuccess || isError) && (
+        <p className={cn(css.message, isError ? css.messageError : css.messageSuccess)}>
+          {message}
+        </p>
+      )}
     </form>
   )
 }
