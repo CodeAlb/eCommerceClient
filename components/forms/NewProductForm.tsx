@@ -113,7 +113,7 @@ const NewProductForm = () => {
             }}
             options={{
               required: true,
-              validate: (value: any) => Number(value) > 0,
+              validate: (value: any) => Number(value) >= 0,
             }}
             errors={errors}
           />
