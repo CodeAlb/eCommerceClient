@@ -3,13 +3,11 @@ export const DIR_PATHS = {
   auth: '/auth',
   cart: '/cart',
   dashboard: '/dashboard',
-  orders: '/orders',
-  product: '/product',
 }
 
 export const GUEST_LINKS = [
-  {title: 'Register', path: '/auth/register'},
-  {title: 'Login', path: '/auth/login'},
+  {title: 'Register', path: `${DIR_PATHS.auth}/register`},
+  {title: 'Login', path: `${DIR_PATHS.auth}/login`},
 ]
 
 export const USER_LINKS = [
@@ -18,14 +16,14 @@ export const USER_LINKS = [
   {title: 'Logout', path: '/logout'},
 ]
 
-export const ADMIN_LINKS = [{title: 'Dashboard', path: '/dashboard'}, ...USER_LINKS]
+export const ADMIN_LINKS = [{title: 'Dashboard', path: DIR_PATHS.dashboard}, ...USER_LINKS]
 
 export const DASHBOARD_LINKS = [
-  {title: 'Dashboard', path: '/dashboard'},
-  {title: 'Products', path: '/dashboard/products'},
-  {title: 'Orders', path: '/dashboard/orders'},
-  {title: 'Users', path: '/dashboard/users'},
-  {title: 'Reviews', path: '/dashboard/reviews'},
+  {title: 'Dashboard', path: DIR_PATHS.dashboard},
+  {title: 'Products', path: `${DIR_PATHS.dashboard}/products`},
+  {title: 'Orders', path: `${DIR_PATHS.dashboard}/orders`},
+  {title: 'Users', path: `${DIR_PATHS.dashboard}/users`},
+  {title: 'Reviews', path: `${DIR_PATHS.dashboard}/reviews`},
 ]
 
 export const PRODUCT_CATEGORIES = ['Chair', 'Lamp', 'Drawer', 'Table', 'Clock']
