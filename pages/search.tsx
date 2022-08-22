@@ -1,5 +1,4 @@
 import type {NextPage} from 'next'
-import Head from 'next/head'
 import {useState} from 'react'
 import Paginate from '../components/Paginate'
 import ProductGrid from '../components/product/ProductGrid'
