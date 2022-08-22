@@ -8,7 +8,8 @@ import Textarea from '../components/fields/Textarea'
 const css = {
   main: 'pb-12 sm:pb-16 max-w-site px-4 mx-auto',
   grid: 'grid md:grid-cols-2',
-  info: 'bg-gray-100 text-black p-6 sm:p-8 md:p-10 lg:p-14',
+  info: 'md:py-6 lg:py-8',
+  infoBox: 'bg-gray-100 text-black p-6 sm:p-8 md:p-10 lg:p-14 h-full',
   form: 'border border-gray-200 p-6 sm:p-8 md:p-10 lg:p-14 shadow-2xl shadow-gray-300',
   sectionTitle: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-4 sm:mb-6',
   infoSummary: 'mb-6 sm:mb-8 text-gray-600 italic',
@@ -30,36 +31,38 @@ const ContactPage: NextPage = () => {
       <div className={css.main}>
         <div className={css.grid}>
           <div className={css.info}>
-            <h3 className={css.sectionTitle}>Information</h3>
-            <p className={css.infoSummary}>
-              Feel free to drop us a line via this contact form, or visit our headquarter. The NDA
-              Sport team is always looking for feedbacks and comments from you to improve our
-              service quality. Our working hours is from 9:00AM to 5:00PM from Monday to Friday
-              (except holidays and weekends).
-            </p>
-            <div className={css.meta}>
-              <div className={css.metaItem}>
-                <LocationMarkerIcon className={css.metaIcon} />
-                <div className={css.metaValue}>
-                  South Forest School
-                  <br />
-                  New Zeeland
+            <div className={css.infoBox}>
+              <h3 className={css.sectionTitle}>Information</h3>
+              <p className={css.infoSummary}>
+                Feel free to drop us a line via this contact form, or visit our headquarter. The NDA
+                Sport team is always looking for feedbacks and comments from you to improve our
+                service quality. Our working hours is from 9:00AM to 5:00PM from Monday to Friday
+                (except holidays and weekends).
+              </p>
+              <div className={css.meta}>
+                <div className={css.metaItem}>
+                  <LocationMarkerIcon className={css.metaIcon} />
+                  <div className={css.metaValue}>
+                    South Forest School
+                    <br />
+                    New Zeeland
+                  </div>
                 </div>
-              </div>
-              <div className={css.metaItem}>
-                <PhoneIcon className={css.metaIcon} />
-                <div className={css.metaValue}>
-                  +84 0123 456 789
-                  <br />
-                  +84 0987 654 321
+                <div className={css.metaItem}>
+                  <PhoneIcon className={css.metaIcon} />
+                  <div className={css.metaValue}>
+                    +84 0123 456 789
+                    <br />
+                    +84 0987 654 321
+                  </div>
                 </div>
-              </div>
-              <div className={css.metaItem}>
-                <MailIcon className={css.metaIcon} />
-                <div className={css.metaValue}>
-                  support@example.com
-                  <br />
-                  sales@example.com
+                <div className={css.metaItem}>
+                  <MailIcon className={css.metaIcon} />
+                  <div className={css.metaValue}>
+                    support@example.com
+                    <br />
+                    sales@example.com
+                  </div>
                 </div>
               </div>
             </div>
