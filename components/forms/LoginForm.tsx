@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {useLoginUserMutation} from '../../store/api/baseApi'
-import {IUser, IUserLogin} from '../../types/user'
+import {IUserLogin} from '../../types/user'
 import {cn} from '../../utils/helpers'
 import Input, {PasswordInput} from '../fields/Input'
 
@@ -22,8 +21,7 @@ const css = {
 }
 
 const LoginForm = () => {
-  const [errorMessage, setErrorMessage] = useState('')
-  const [loginUser, {isLoading}] = useLoginUserMutation()
+  const [loginUser, {isLoading, isError, error}] = useLoginUserMutation()
 
   const {
     register,
@@ -83,7 +81,7 @@ const LoginForm = () => {
           <a className={css.resetLink}>Forgot password?</a>
         </Link>
       </div>
-      {errorMessage && <div className={css.warning}>{errorMessage}</div>}
+      {isError && <div className={css.warning}>{(error as any)?.data?.message}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
         <Link href="/auth/register">
