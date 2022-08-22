@@ -34,6 +34,6 @@ export const DASHBOARD_LINKS = [
 
 export const PRODUCT_CATEGORIES = ['Chair', 'Lamp', 'Drawer', 'Table', 'Clock']
 
-export const PRODUCT_SELLERS = ['eBay']
+export const PRODUCT_SELLERS = ['IKEA']
 
 export const USER_ROLES = ['user', 'admin']
