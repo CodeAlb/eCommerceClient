@@ -2,6 +2,8 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import {useGetProductQuery} from '../../../store/api/baseApi'
 import {NextSeo} from 'next-seo'
 import EditProductForm from '../../../components/forms/EditProductForm'
+import {IProduct} from '../../../types/product'
+import EditProductLoader from '../../../components/loaders/EditProductLoader'
 
 type ProductPageProps = {
   id: string
@@ -15,8 +17,7 @@ const css = {
 }
 
 const ProductPage = ({id}: ProductPageProps) => {
-  const {data, isLoading, isFetching} = useGetProductQuery(id)
-  const showLoader = isLoading || isFetching
+  const {data, isLoading} = useGetProductQuery(id)
   const {product} = data || {}
   const {name} = product || {}
   const title = name ? `Edit: ${name}` : 'Edit Product'
@@ -29,7 +30,7 @@ const ProductPage = ({id}: ProductPageProps) => {
         <button className={css.deleteBtn}>Delete</button>
       </div>
       <div>
-        <EditProductForm />
+        {isLoading ? <EditProductLoader /> : <EditProductForm product={product as IProduct} />}
       </div>
     </div>
   )
