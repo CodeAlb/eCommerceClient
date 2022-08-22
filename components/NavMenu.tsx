@@ -1,15 +1,10 @@
+import {NAV_LINKS} from '../utils/constants'
 import {cn} from '../utils/helpers'
 import ActiveLink from './hoc/ActiveLink'
 
 type NavMenuProps = {
   className?: string
 }
-
-const NAV_LINKS = [
-  {title: 'Products', path: '/shop'},
-  {title: 'Company', path: '/company'},
-  {title: 'Contact', path: '/contact'},
-]
 
 const css = {
   wrapper: 'hidden md:flex md:items-center space-x-8 text-sm uppercase font-medium',
