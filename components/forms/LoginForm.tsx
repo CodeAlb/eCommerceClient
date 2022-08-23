@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useLoginUserMutation} from '../../store/api/baseApi'
 import {IUserLogin} from '../../types/user'
 import {DIR_PATHS} from '../../utils/constants'
@@ -10,7 +12,6 @@ const css = {
   form: 'max-w-sm mx-auto',
   fields: 'space-y-6',
   action: 'mt-10 flex items-center justify-between',
-  warning: 'mt-6 text-red-600',
   submit:
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
@@ -22,7 +23,7 @@ const css = {
 }
 
 const LoginForm = () => {
-  const [loginUser, {isLoading, isError, error}] = useLoginUserMutation()
+  const [loginUser, {isLoading, isSuccess, isError, error}] = useLoginUserMutation()
 
   const {
     register,
@@ -30,6 +31,15 @@ const LoginForm = () => {
     watch,
     formState: {errors},
   } = useForm<IUserLogin>()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('You are logged in')
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
 
   const sendFormData = (data: IUserLogin) => {
     if (!isLoading) {
@@ -82,7 +92,6 @@ const LoginForm = () => {
           <a className={css.resetLink}>Forgot password?</a>
         </Link>
       </div>
-      {isError && <div className={css.warning}>{(error as any)?.data?.message}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
         <Link href={`${DIR_PATHS.auth}/register`}>

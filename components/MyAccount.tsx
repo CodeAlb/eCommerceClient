@@ -1,6 +1,7 @@
 import {UserIcon, MenuIcon} from '@heroicons/react/outline'
 import Link from 'next/link'
 import {useState} from 'react'
+import {toast} from 'react-toastify'
 import useOnClickOutside from '../hooks/onClickOutside'
 import {fetchLogout, getAuthState} from '../store/slices/authReducer'
 import {useDispatch, useSelector} from '../store/store'
@@ -47,6 +48,7 @@ const MyAccount = ({className, isDashboard}: MyAccountProps) => {
     setIsOpen(!isOpen)
   }
   const logout = () => {
+    toast.info('You are logged out')
     dispatch(fetchLogout())
     setIsOpen(false)
   }

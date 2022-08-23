@@ -1,4 +1,6 @@
+import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useUpdateProductMutation} from '../../store/api/baseApi'
 import {IProduct} from '../../types/product'
 import {PRODUCT_CATEGORIES, PRODUCT_SELLERS} from '../../utils/constants'
@@ -45,8 +47,15 @@ const EditProductForm = ({product}: EditProductFormProps) => {
     },
   })
   const [updateProduct, {isLoading, isSuccess, isError, error, data}] = useUpdateProductMutation()
-  const message = (error as any)?.data?.message || data?.message || ''
-  console.log(data)
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message)
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error, data])
 
   const sendFormData = (data: any) => {
     if (!isLoading) {
@@ -176,11 +185,6 @@ const EditProductForm = ({product}: EditProductFormProps) => {
           Update
         </button>
       </div>
-      {!isLoading && (isSuccess || isError) && (
-        <p className={cn(css.message, isError ? css.messageError : css.messageSuccess)}>
-          {message}
-        </p>
-      )}
     </form>
   )
 }

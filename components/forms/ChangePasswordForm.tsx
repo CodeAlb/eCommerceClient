@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useUpdateUserPasswordMutation} from '../../store/api/baseApi'
 import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
@@ -9,8 +11,6 @@ const css = {
   form: 'max-w-sm mx-auto',
   fields: 'space-y-6',
   action: 'mt-10 flex items-center justify-between',
-  warning: 'mt-6 text-red-600',
-  success: 'mt-6 text-green-600',
   submit:
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
@@ -24,13 +24,21 @@ const css = {
 const ChangePasswordForm = () => {
   const [updateUserPassword, {isLoading, isSuccess, isError, error}] =
     useUpdateUserPasswordMutation()
-
   const {
     register,
     handleSubmit,
     watch,
     formState: {errors},
   } = useForm()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Your password has been updated')
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
 
   const sendFormData = (data: any) => {
     if (!isLoading) {
@@ -90,8 +98,6 @@ const ChangePasswordForm = () => {
           <a className={css.resetLink}>Change profile?</a>
         </Link>
       </div>
-      {isError && <div className={css.warning}>{(error as any)?.data?.message}</div>}
-      {isSuccess && <div className={css.success}>Your password has been updated!</div>}
     </form>
   )
 }

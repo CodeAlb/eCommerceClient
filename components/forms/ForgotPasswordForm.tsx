@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useLoginUserMutation} from '../../store/api/baseApi'
 import {DIR_PATHS} from '../../utils/constants'
 import {cn} from '../../utils/helpers'
@@ -10,7 +11,6 @@ const css = {
   form: 'max-w-sm mx-auto',
   fields: 'space-y-6',
   action: 'mt-10 flex items-center justify-between',
-  warning: 'mt-6 text-red-600',
   submit:
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
@@ -21,8 +21,7 @@ const css = {
 }
 
 const ForgotPasswordForm = () => {
-  const [errorMessage, setErrorMessage] = useState('')
-  const [loginUser, {isLoading}] = useLoginUserMutation()
+  const [loginUser, {isLoading, isSuccess, isError, error}] = useLoginUserMutation()
 
   const {
     register,
@@ -30,6 +29,15 @@ const ForgotPasswordForm = () => {
     watch,
     formState: {errors},
   } = useForm()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Password was sent to email')
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
 
   const sendFormData = (data: any) => {
     if (!isLoading) {
@@ -65,7 +73,6 @@ const ForgotPasswordForm = () => {
           Send Link
         </button>
       </div>
-      {errorMessage && <div className={css.warning}>{errorMessage}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
         <Link href={`${DIR_PATHS.auth}/login`}>

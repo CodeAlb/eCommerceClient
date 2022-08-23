@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useCreateUserMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import Input, {PasswordInput} from '../fields/Input'
@@ -20,8 +21,7 @@ const css = {
 }
 
 const RegisterForm = () => {
-  const [errorMessage, setErrorMessage] = useState('')
-  const [createUser, {isLoading}] = useCreateUserMutation()
+  const [createUser, {isLoading, isError, isSuccess, error}] = useCreateUserMutation()
 
   const {
     register,
@@ -29,6 +29,15 @@ const RegisterForm = () => {
     watch,
     formState: {errors},
   } = useForm()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('You have been registered')
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
 
   const sendUserData = (data: any) => {
     if (!isLoading) {
@@ -115,7 +124,6 @@ const RegisterForm = () => {
           Register
         </button>
       </div>
-      {errorMessage && <div className={css.warning}>{errorMessage}</div>}
       <div className={css.ref}>
         <div className={css.refOr}>OR</div>
         <Link href="/auth/login">

@@ -1,9 +1,10 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {StarIcon} from '@heroicons/react/outline'
 import {useCreateReviewMutation} from '../../store/api/baseApi'
 import {cn} from '../../utils/helpers'
 import Textarea from '../fields/Textarea'
+import {toast} from 'react-toastify'
 
 const css = {
   wrapper: 'mt-4 sm:mt-6',
@@ -20,9 +21,6 @@ const css = {
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
   submitNormal: 'bg-black text-white hover:bg-gray-900',
-  message: 'mt-4 sm:mt-5 rounded-lg py-2 px-4 flex justify-between space-x-4',
-  messageSuccess: 'bg-green-50 text-green-800',
-  messageError: 'bg-red-50 text-red-800',
 }
 
 interface ReviewFormProps {
@@ -35,7 +33,6 @@ interface IReviewData {
 const ReviewForm = ({productId}: ReviewFormProps) => {
   const [rating, setRating] = useState(5)
   const [createReview, {isLoading, isSuccess, isError, error, data}] = useCreateReviewMutation()
-  const message = (error as any)?.data?.message || data?.message || ''
 
   const {
     register,
@@ -43,6 +40,15 @@ const ReviewForm = ({productId}: ReviewFormProps) => {
     watch,
     formState: {errors},
   } = useForm<IReviewData>()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message)
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error, data])
 
   const sendFormData = (data: IReviewData) => {
     const reviewData = {...data, rating, productId}
@@ -95,11 +101,6 @@ const ReviewForm = ({productId}: ReviewFormProps) => {
             Publish
           </button>
         </div>
-        {!isLoading && (isSuccess || isError) && (
-          <p className={cn(css.message, isError ? css.messageError : css.messageSuccess)}>
-            {message}
-          </p>
-        )}
       </form>
     </div>
   )

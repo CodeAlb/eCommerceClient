@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css'
 import '../styles/rangeSlider.css'
 import type {AppProps} from 'next/app'
@@ -10,6 +11,7 @@ import Boot from '../components/hoc/Boot'
 import Protected from '../components/hoc/Protected'
 import Dashboard from '../components/Dashboard'
 import {DefaultSeo} from 'next-seo'
+import {ToastContainer} from 'react-toastify'
 
 const css = {
   wrapper: 'min-h-screen',
@@ -38,6 +40,7 @@ function MyApp({Component, pageProps}: AppProps) {
             </>
           )}
         </Protected>
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </Provider>
     </div>
   )

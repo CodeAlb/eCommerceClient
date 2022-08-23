@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
+import {toast} from 'react-toastify'
 import {useUpdateLoggedUserMutation} from '../../store/api/baseApi'
 import {getAuthState, updateUserData} from '../../store/slices/authReducer'
 import {useDispatch, useSelector} from '../../store/store'
@@ -29,7 +30,7 @@ const UpdateProfileForm = () => {
   const {user} = useSelector(getAuthState)
   const dispatch = useDispatch()
   const {name = '', email = ''} = user || {}
-  const [updateLoggedUser, {isLoading, isSuccess, isError, originalArgs}] =
+  const [updateLoggedUser, {isLoading, isSuccess, isError, error, originalArgs}] =
     useUpdateLoggedUserMutation()
 
   const {
@@ -46,6 +47,15 @@ const UpdateProfileForm = () => {
       dispatch(updateUserData(originalArgs))
     }
   }, [isSuccess, dispatch, originalArgs])
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Profile was updated')
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
 
   const sendFormData = (data: any) => {
     if (!isLoading) {
@@ -98,8 +108,6 @@ const UpdateProfileForm = () => {
           <a className={css.resetLink}>Change password?</a>
         </Link>
       </div>
-      {isError && <div className={css.warning}>Something went wrong!</div>}
-      {isSuccess && <div className={css.success}>Your profile has been updated!</div>}
     </form>
   )
 }
