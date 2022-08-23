@@ -58,7 +58,7 @@ export const baseApi = createApi({
     }),
     updateUserPassword: builder.mutation<void, IUserNewPassword>({
       query: (data) => ({
-        url: 'auth/password/update',
+        url: 'auth/password',
         method: 'PUT',
         body: data,
       }),
