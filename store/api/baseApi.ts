@@ -2,7 +2,6 @@ import {createApi} from '@reduxjs/toolkit/query/react'
 import {baseQueryWithReauth} from './baseQuery'
 import {IOrderResponse, IOrdersResponse} from '../../types/order'
 import {
-  IProduct,
   IProductCard,
   IProductFilter,
   IProductResponse,
@@ -19,7 +18,7 @@ import {buildQueryFilter} from '../../utils/buildQueryFilter'
 import {IReview, IReviewData} from '../../types/review'
 
 const transformResponse = async (response: any) => {
-  await new Promise((resolve) => setTimeout(resolve, 700))
+  // await new Promise((resolve) => setTimeout(resolve, 700))
   return response
 }
 
@@ -104,13 +103,21 @@ export const baseApi = createApi({
         return [{type: 'Product', id: 'LIST'}]
       },
     }),
-    updateProduct: builder.mutation<any, IProduct>({
-      query: ({_id, ...data}) => ({
+    updateProduct: builder.mutation<any, any>({
+      query: ({_id, formData}) => ({
         url: `admin/products/${_id}`,
         method: 'PUT',
-        body: data,
+        body: formData,
       }),
       invalidatesTags: (result, error, arg) => [{type: 'Product', id: arg._id}],
+    }),
+    uploadImages: builder.mutation<any, any>({
+      query: ({productId, formData}) => ({
+        url: `admin/upload/${productId}`,
+        method: 'POST',
+        body: formData,
+      }),
+      invalidatesTags: (result, error, arg) => [{type: 'Product', id: arg.productId}],
     }),
     getAllReviews: builder.query<any, string>({
       query: (productId) => {
@@ -177,6 +184,7 @@ export const {
   useCreateReviewMutation,
   useGetAllUsersQuery,
   useGetProductQuery,
+  useUploadImagesMutation,
   useGetAllProductsQuery,
   useUpdateProductMutation,
   useGetAllReviewsQuery,
