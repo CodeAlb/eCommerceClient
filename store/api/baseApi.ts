@@ -18,7 +18,7 @@ import {buildQueryFilter} from '../../utils/buildQueryFilter'
 import {IReview, IReviewData} from '../../types/review'
 
 const transformResponse = async (response: any) => {
-  // await new Promise((resolve) => setTimeout(resolve, 700))
+  await new Promise((resolve) => setTimeout(resolve, 700))
   return response
 }
 
@@ -111,6 +111,21 @@ export const baseApi = createApi({
       }),
       invalidatesTags: (result, error, arg) => [{type: 'Product', id: arg._id}],
     }),
+    deleteProduct: builder.mutation<any, any>({
+      query: (id) => ({
+        url: `admin/products/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [{type: 'Product', id}],
+    }),
+    createProduct: builder.mutation<any, any>({
+      query: (formData) => ({
+        url: `admin/products/create`,
+        method: 'POST',
+        body: formData,
+      }),
+      invalidatesTags: [{type: 'Product'}],
+    }),
     uploadImages: builder.mutation<any, any>({
       query: ({productId, formData}) => ({
         url: `admin/upload/${productId}`,
@@ -187,6 +202,8 @@ export const {
   useUploadImagesMutation,
   useGetAllProductsQuery,
   useUpdateProductMutation,
+  useCreateProductMutation,
+  useDeleteProductMutation,
   useGetAllReviewsQuery,
   useGetAllOrdersQuery,
   useGetOrderQuery,
