@@ -10,6 +10,7 @@ import Hero from '../../components/elements/Hero'
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
 import {DIR_PATHS} from '../../utils/constants'
+import Image from 'next/future/image'
 
 const css = {
   main: 'pb-12 sm:pb-16',
@@ -74,7 +75,7 @@ const CartItems = () => {
         {items.map(({_id, name, image, price, amount}: any) => (
           <div key={_id} className={css.product}>
             <div className={css.productMedia}>
-              <img src={image} alt={name} className={css.productImg} />
+              <Image src={image} alt={name} className={css.productImg} width={48} height={48} />
             </div>
             <div className={css.productBody}>
               <h4 className={css.productName}>{name}</h4>

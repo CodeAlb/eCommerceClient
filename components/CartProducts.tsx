@@ -8,6 +8,7 @@ import {
 } from '../store/slices/cartReducer'
 import {useDispatch, useSelector} from '../store/store'
 import {cn} from '../utils/helpers'
+import Image from 'next/future/image'
 
 type CartProductsProps = {
   isModal?: boolean
@@ -104,10 +105,12 @@ const CartProducts = ({isModal = false}: CartProductsProps) => {
             >
               <XIcon className={css.removeIcon} />
             </button>
-            <img
+            <Image
               src={item.image}
-              className={cn(css.image, !isModal && css.imageBig)}
               alt={item.name}
+              className={cn(css.image, !isModal && css.imageBig)}
+              width={48}
+              height={48}
             />
           </div>
           <div className={css.body}>

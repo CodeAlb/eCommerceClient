@@ -4,6 +4,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import {IProduct} from '../../types/product'
+import Image from 'next/future/image'
 
 interface ProductGalleryProps {
   product?: IProduct
@@ -31,7 +32,7 @@ const ProductGalleryLoading = () => (
 
 const ProductGalleryEmpty = () => (
   <div className={css.slide}>
-    <div className="absolute inset-0 bg-gray-200 overflow-hidden" />
+    <div className="absolute inset-0 overflow-hidden bg-gray-200" />
   </div>
 )
 
@@ -59,7 +60,7 @@ const ProductGallery = ({product, isLoading = false}: ProductGalleryProps) => {
       >
         {images.map(({url}, i) => (
           <SwiperSlide className={css.slide} key={i}>
-            <img src={url} className={css.image} alt="Product images" />
+            <Image src={url} className={css.image} alt="Product images" width={560} height={560} />
           </SwiperSlide>
         ))}
       </Swiper>

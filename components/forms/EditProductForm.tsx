@@ -1,4 +1,5 @@
-import {TrashIcon, XIcon} from '@heroicons/react/outline'
+import {TrashIcon} from '@heroicons/react/outline'
+import Image from 'next/future/image'
 import {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {toast} from 'react-toastify'
@@ -93,8 +94,6 @@ const EditProductForm = ({product}: EditProductFormProps) => {
     })
   }
 
-  console.log(deletedImages)
-
   const sendFormData = (data: any) => {
     if (!isLoading) {
       const formData = new FormData()
@@ -182,6 +181,12 @@ const EditProductForm = ({product}: EditProductFormProps) => {
           placeholder="Short description..."
           register={register}
           minHeight={100}
+          hints={{
+            required: 'Excerpt is required',
+          }}
+          options={{
+            required: true,
+          }}
           watch={watch}
           errors={errors}
         />
@@ -237,7 +242,13 @@ const EditProductForm = ({product}: EditProductFormProps) => {
         <div className={css.images}>
           {images.map((image: IImage | string, i) => (
             <div key={i} className={css.imageItem}>
-              <img src={typeof image === 'string' ? image : image?.url} className={css.image} />
+              <Image
+                src={typeof image === 'string' ? image : image?.url}
+                alt="Product Preview"
+                className={css.image}
+                width={128}
+                height={128}
+              />
               <button
                 type="button"
                 onClick={() => {
@@ -256,7 +267,7 @@ const EditProductForm = ({product}: EditProductFormProps) => {
           type="submit"
           className={cn(css.submit, isLoading ? css.submitDisabled : css.submitNormal)}
         >
-          Update
+          Update Product
         </button>
       </div>
     </form>

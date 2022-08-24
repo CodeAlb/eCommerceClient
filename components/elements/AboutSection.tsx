@@ -1,3 +1,4 @@
+import Image from 'next/future/image'
 import {cn} from '../../utils/helpers'
 
 const css = {
@@ -23,7 +24,7 @@ const AboutSection = ({title, subtitle, image, content, isReversed}: AboutSectio
   return (
     <div className={css.wrapper}>
       <div className={cn(css.media, isReversed && css.mediaReversed)}>
-        {image && <img src={image} alt={title} className={css.image} />}
+        {image && <Image src={image} alt={title} className={css.image} width={650} height={550} />}
       </div>
       <div className={css.body}>
         {subtitle && <p className={css.subtitle}>{subtitle}</p>}

@@ -4,6 +4,7 @@ import {NextSeo} from 'next-seo'
 import Hero from '../../components/elements/Hero'
 import {timeAgo} from '../../utils/timeAgo'
 import {numToPrice} from '../../utils/helpers'
+import Image from 'next/future/image'
 
 type OrderPageProps = {
   id: string
@@ -116,7 +117,13 @@ const OrderPage = ({id}: OrderPageProps) => {
                 orderItems.map(({_id, name, image, price, amount}: any) => (
                   <div key={_id} className={css.product}>
                     <div className={css.productMedia}>
-                      <img src={image} alt={name} className={css.productImg} />
+                      <Image
+                        src={image}
+                        alt={name}
+                        className={css.productImg}
+                        width={48}
+                        height={48}
+                      />
                     </div>
                     <div className={css.productBody}>
                       <h4 className={css.productName}>{name}</h4>

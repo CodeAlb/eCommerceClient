@@ -9,6 +9,7 @@ import {IProductFilter} from '../../../types/product'
 import {numToPrice} from '../../../utils/helpers'
 import Link from 'next/link'
 import {DIR_PATHS} from '../../../utils/constants'
+import Image from 'next/future/image'
 
 const css = {
   headline: 'mb-6 sm:mb-8 md:mb-10 flex items-center',
@@ -24,7 +25,9 @@ const css = {
 
 const STRUCTURE = [
   {
-    selector: (r: any) => <img src={r?.images?.[0]?.url} alt={r.name} className={css.img} />,
+    selector: (r: any) => (
+      <Image src={r?.images?.[0]?.url} alt={r.name} className={css.img} width={48} height={48} />
+    ),
     className: 'col-span-1',
   },
   {

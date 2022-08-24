@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
+import Image from 'next/future/image'
 
 interface MainHeroProps {}
 
@@ -22,7 +23,7 @@ const MainHero = ({}: MainHeroProps) => {
   return (
     <div className={css.wrapper}>
       <div className={css.inner}>
-        <img src={imageUrl} alt="Banner" className={css.image} />
+        <Image src={imageUrl} alt="Banner" className={css.image} width={1200} height={550} />
         <div className={css.overlay} />
         <div className={css.body}>
           <h1 className={css.title}>Furnishing your home with experienced style</h1>
