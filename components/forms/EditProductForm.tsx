@@ -22,9 +22,6 @@ const css = {
     'rounded inline-flex items-center px-6 h-10 sm:px-8 sm:h-12 font-medium uppercase text-xs sm:text-sm tracking-wider duration-150',
   submitDisabled: 'bg-gray-300 text-white',
   submitNormal: 'bg-black text-white hover:bg-gray-900',
-  message: 'mt-4 sm:mt-5 rounded-lg py-2 px-4 flex justify-between space-x-4',
-  messageSuccess: 'bg-green-50 text-green-800',
-  messageError: 'bg-red-50 text-red-800',
 }
 
 const EditProductForm = ({product}: EditProductFormProps) => {
