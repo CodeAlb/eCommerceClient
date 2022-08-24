@@ -1,9 +1,13 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
-import {useGetProductQuery} from '../../../store/api/baseApi'
+import {useDeleteProductMutation, useGetProductQuery} from '../../../store/api/baseApi'
 import {NextSeo} from 'next-seo'
 import EditProductForm from '../../../components/forms/EditProductForm'
 import {IProduct} from '../../../types/product'
 import EditProductLoader from '../../../components/loaders/EditProductLoader'
+import {useEffect} from 'react'
+import {DIR_PATHS} from '../../../utils/constants'
+import {useRouter} from 'next/router'
+import {toast} from 'react-toastify'
 
 type ProductPageProps = {
   id: string
@@ -22,15 +26,41 @@ const ProductPage = ({id}: ProductPageProps) => {
   const {name} = product || {}
   const title = name ? `Edit: ${name}` : 'Edit Product'
 
+  const {push} = useRouter()
+  const [deleteProduct, {isLoading: isDeleteLoading, isSuccess, isError, error}] =
+    useDeleteProductMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Product was deleted')
+      push(`${DIR_PATHS.dashboard}/products`)
+    }
+    if (isError) {
+      toast.error((error as any)?.data?.message)
+    }
+  }, [isSuccess, isError, error])
+
+  const onDeleteClick = () => {
+    if (!isDeleteLoading) {
+      deleteProduct(id)
+    }
+  }
+
   return (
     <div>
       <NextSeo title={title} />
       <div className={css.headline}>
         <h1 className={css.title}>Edit Product</h1>
-        <button className={css.deleteBtn}>Delete</button>
+        <button className={css.deleteBtn} onClick={onDeleteClick}>
+          Delete
+        </button>
       </div>
       <div>
-        {isLoading ? <EditProductLoader /> : <EditProductForm product={product as IProduct} />}
+        {isLoading || isDeleteLoading ? (
+          <EditProductLoader />
+        ) : (
+          <EditProductForm product={product as IProduct} />
+        )}
       </div>
     </div>
   )
