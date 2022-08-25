@@ -58,7 +58,7 @@ const QUERY_FILTER = {
 
 const AdminOrders = () => {
   const {data, isLoading, isFetching} = useGetAllOrdersQuery()
-  const {orders} = data || {}
+  const {orders = [], found} = data || {}
   const showLoader = isLoading || isFetching
 
   return (
