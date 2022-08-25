@@ -37,3 +37,5 @@ export const PRODUCT_CATEGORIES = ['Chair', 'Lamp', 'Drawer', 'Table', 'Clock']
 export const PRODUCT_SELLERS = ['IKEA']
 
 export const USER_ROLES = ['user', 'admin']
+
+export const ORDER_STATUS_LIST = ['Delivered', 'Processing']
