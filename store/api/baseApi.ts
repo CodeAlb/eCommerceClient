@@ -170,7 +170,22 @@ export const baseApi = createApi({
     }),
     getOrder: builder.query<IOrderResponse, string>({
       query: (id) => `orders/${id}`,
-      providesTags: ['Order'],
+      providesTags: (result, error, id) => (result ? [{type: 'Order', id}] : ['Order']),
+    }),
+    updateOrder: builder.mutation<any, any>({
+      query: ({id, data}) => ({
+        url: `admin/orders/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => [{type: 'Order', id: arg.id}],
+    }),
+    deleteOrder: builder.mutation<any, any>({
+      query: (id) => ({
+        url: `admin/orders/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [{type: 'Order', id}],
     }),
     createOrder: builder.mutation<any, any>({
       query: (data) => ({
@@ -207,6 +222,8 @@ export const {
   useGetAllReviewsQuery,
   useGetAllOrdersQuery,
   useGetOrderQuery,
+  useUpdateOrderMutation,
+  useDeleteOrderMutation,
   useGetMyOrdersQuery,
   useCreateOrderMutation,
   useStripePaymentMutation,
