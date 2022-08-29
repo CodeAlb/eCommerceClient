@@ -1,9 +1,9 @@
 import {GetStaticProps} from 'next'
 import {ArrowRightIcon} from '@heroicons/react/outline'
-import Hero from '../../components/elements/Hero'
-import {useGetMyOrdersQuery} from '../../store/api/baseApi'
+import Hero from '../../components/ui/Hero'
+import {useGetMyOrdersQuery} from '../../store/api/ordersApiSlice'
 import {cn, numToPrice} from '../../utils/helpers'
-import DataTable from '../../components/DataTable'
+import DataTable from '../../components/ui/DataTable'
 import {NextSeo} from 'next-seo'
 
 const css = {

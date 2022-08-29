@@ -1,6 +1,5 @@
 export const DIR_PATHS = {
   account: '/account',
-  auth: '/auth',
   cart: '/cart',
   dashboard: '/dashboard',
 }
@@ -12,8 +11,8 @@ export const NAV_LINKS = [
 ]
 
 export const GUEST_LINKS = [
-  {title: 'Register', path: `${DIR_PATHS.auth}/register`},
-  {title: 'Login', path: `${DIR_PATHS.auth}/login`},
+  {title: 'Register', path: `${DIR_PATHS.account}/register`},
+  {title: 'Login', path: `${DIR_PATHS.account}/login`},
 ]
 
 export const USER_LINKS = [

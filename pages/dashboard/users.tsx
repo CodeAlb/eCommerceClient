@@ -1,8 +1,8 @@
 import {NextSeo} from 'next-seo'
 import {GetStaticProps} from 'next'
 import {ArrowRightIcon} from '@heroicons/react/outline'
-import DataTable from '../../components/DataTable'
-import {useGetAllUsersQuery} from '../../store/api/baseApi'
+import DataTable from '../../components/ui/DataTable'
+import {useGetUsersQuery} from '../../store/api/usersApiSlice'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
@@ -50,7 +50,7 @@ const QUERY_FILTER = {
 }
 
 const AdminUsers = () => {
-  const {data, isLoading, isFetching} = useGetAllUsersQuery()
+  const {data, isLoading, isFetching} = useGetUsersQuery()
   const {users} = data || {}
   const showLoader = isLoading || isFetching
 

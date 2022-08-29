@@ -1,9 +1,9 @@
 import type {NextPage} from 'next'
 import Link from 'next/link'
 import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
-import MainHero from '../components/elements/MainHero'
-import ProductGrid from '../components/product/ProductGrid'
-import {useGetAllProductsQuery} from '../store/api/baseApi'
+import MainHero from '../components/ui/MainHero'
+import {useGetProductsQuery} from '../store/api/productsApiSlice'
+import ProductList from '../components/products/ProductList'
 
 const css = {
   main: 'py-12 sm:py-20',
@@ -21,8 +21,8 @@ const QUERY_FILTER = {
 }
 
 const HomePage: NextPage = () => {
-  const {data, isLoading, isFetching} = useGetAllProductsQuery(QUERY_FILTER)
-  const {products = []} = data || {}
+  const {data, isLoading, isFetching} = useGetProductsQuery(QUERY_FILTER)
+  const {products} = data || {}
 
   return (
     <div>
@@ -39,7 +39,7 @@ const HomePage: NextPage = () => {
                 </a>
               </Link>
             </h2>
-            <ProductGrid
+            <ProductList
               data={products}
               skeletons={QUERY_FILTER.limit}
               isLoading={isLoading || isFetching}

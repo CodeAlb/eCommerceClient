@@ -8,8 +8,8 @@ import {
 import Link from 'next/link'
 import {ReactNode} from 'react'
 import {DASHBOARD_LINKS, DIR_PATHS} from '../utils/constants'
-import ActiveLink from './hoc/ActiveLink'
-import MyAccount from './MyAccount'
+import ActiveLink from './ui/ActiveLink'
+import HeaderAccount from './header/HeaderAccount'
 
 type DashboardProps = {
   children?: ReactNode
@@ -68,7 +68,7 @@ const Dashboard = ({children}: DashboardProps) => {
               </a>
             </Link>
           </div>
-          <MyAccount isDashboard />
+          <HeaderAccount isDashboard />
         </nav>
       </header>
       <div className={css.body}>

@@ -1,13 +1,13 @@
 import type {NextPage} from 'next'
 import {useState} from 'react'
-import Paginate from '../components/Paginate'
-import ProductGrid from '../components/product/ProductGrid'
-import ProductFilters from '../components/product/ProductFilters'
-import Hero from '../components/elements/Hero'
-import {useGetAllProductsQuery} from '../store/api/baseApi'
+import Paginate from '../components/ui/Paginate'
+import Hero from '../components/ui/Hero'
+import {useGetProductsQuery} from '../store/api/productsApiSlice'
 import {IProductFilter} from '../types/product'
-import QueryResults from '../components/QueryResult'
+import QueryResults from '../components/ui/QueryResult'
 import {NextSeo} from 'next-seo'
+import ProductList from '../components/products/ProductList'
+import ProductFilters from '../components/products/ProductFilters'
 
 const css = {
   main: 'max-w-site mx-auto px-4',
@@ -25,7 +25,7 @@ const QUERY_FILTER = {
 
 const ShopPage: NextPage = () => {
   const [filter, setFilter] = useState<IProductFilter>(QUERY_FILTER)
-  const {data, isLoading, isFetching, isError} = useGetAllProductsQuery(filter)
+  const {data, isLoading, isFetching, isError} = useGetProductsQuery(filter)
   const {found = 0, total = 0, pages = 1, page = 1, products = []} = data || {}
   const showLoader = isLoading || isFetching
 
@@ -44,7 +44,7 @@ const ShopPage: NextPage = () => {
               total={total}
               found={isError ? 0 : found}
             >
-              <ProductGrid
+              <ProductList
                 data={isError ? [] : products}
                 isLoading={showLoader}
                 skeletons={filter.limit}

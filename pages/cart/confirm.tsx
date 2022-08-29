@@ -1,12 +1,12 @@
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {ArrowNarrowRightIcon} from '@heroicons/react/outline'
-import PaymentSteps from '../../components/elements/PaymentStep'
-import {getAuthState} from '../../store/slices/authReducer'
-import {getCartState} from '../../store/slices/cartReducer'
+import PaymentSteps from '../../components/ui/PaymentStep'
+import {getAuthState} from '../../store/slices/authSlice'
+import {getCartState} from '../../store/slices/cartSlice'
 import {useSelector} from '../../store/store'
 import {calculateTotal, cn, numToPrice, setSessionStorage} from '../../utils/helpers'
-import Hero from '../../components/elements/Hero'
+import Hero from '../../components/ui/Hero'
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
 import {DIR_PATHS} from '../../utils/constants'
@@ -51,7 +51,7 @@ const BillingDetails = () => {
       <h3 className={css.sectionTitle}>Billing Details</h3>
       <div className={css.metaItem}>
         <span>Name: </span>
-        {user.name}
+        {user?.name}
       </div>
       <div className={css.metaItem}>
         <span>Phone: </span>

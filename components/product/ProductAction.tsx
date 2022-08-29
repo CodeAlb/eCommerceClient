@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import {MinusIcon, PlusIcon} from '@heroicons/react/outline'
 import {IProduct} from '../../types/product'
-import {addToCard} from '../../store/slices/cartReducer'
+import {addToCard} from '../../store/slices/cartSlice'
 import {useDispatch} from '../../store/store'
 import {cn} from '../../utils/helpers'
 
-interface ProductActionProps {
+interface IProductActionProps {
   product?: IProduct
 }
 
@@ -22,7 +22,7 @@ const css = {
     'rounded px-6 h-10 bg-black text-white font-medium uppercase text-sm tracking-wider hover:opacity-75 duration-150',
 }
 
-const ProductAction = ({product}: ProductActionProps) => {
+const ProductAction = ({product}: IProductActionProps) => {
   const {stock = 0} = product || {}
   const canBuyProduct = stock > 0
   const [amount, setAmount] = useState(1)

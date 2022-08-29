@@ -1,8 +1,8 @@
 import {GetStaticProps} from 'next'
 import {NextSeo} from 'next-seo'
 import {ArrowRightIcon} from '@heroicons/react/outline'
-import DataTable from '../../../components/DataTable'
-import {useGetAllOrdersQuery} from '../../../store/api/baseApi'
+import DataTable from '../../../components/ui/DataTable'
+import {useGetOrdersQuery} from '../../../store/api/ordersApiSlice'
 import {cn, numToPrice} from '../../../utils/helpers'
 import {timeAgo} from '../../../utils/timeAgo'
 import {DIR_PATHS} from '../../../utils/constants'
@@ -57,7 +57,7 @@ const QUERY_FILTER = {
 }
 
 const AdminOrders = () => {
-  const {data, isLoading, isFetching} = useGetAllOrdersQuery()
+  const {data, isLoading, isFetching} = useGetOrdersQuery()
   const {orders = [], found} = data || {}
   const showLoader = isLoading || isFetching
 

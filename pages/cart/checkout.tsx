@@ -1,6 +1,6 @@
-import PaymentSteps from '../../components/elements/PaymentStep'
-import Hero from '../../components/elements/Hero'
-import BillingForm from '../../components/forms/BillingForm'
+import PaymentSteps from '../../components/ui/PaymentStep'
+import Hero from '../../components/ui/Hero'
+import BillingForm from '../../components/cart/BillingForm'
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
 

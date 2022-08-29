@@ -3,11 +3,11 @@ import {NextSeo} from 'next-seo'
 import {GetStaticProps} from 'next'
 import {ArrowRightIcon} from '@heroicons/react/outline'
 import {useState} from 'react'
-import DataTable from '../../components/DataTable'
-import SearchForm from '../../components/elements/SearchForm'
-import StarRating from '../../components/StarRating'
-import {useGetAllReviewsQuery} from '../../store/api/baseApi'
+import DataTable from '../../components/ui/DataTable'
+import SearchForm from '../../components/ui/SearchForm'
+import {useGetReviewsQuery} from '../../store/api/reviewsApiSlice'
 import {timeAgo} from '../../utils/timeAgo'
+import StarRating from '../../components/ui/StarRating'
 
 const css = {
   title: 'text-xl sm:text-2xl md:text-3xl uppercase font-medium mb-6 sm:mb-8 md:mb-10',
@@ -57,9 +57,7 @@ const QUERY_FILTER = {
 
 const AdminReviews = () => {
   const [productId, setProductId] = useState('')
-  const {data, isLoading, isFetching, isError, error} = useGetAllReviewsQuery(
-    productId || skipToken
-  )
+  const {data, isLoading, isFetching, isError, error} = useGetReviewsQuery(productId || skipToken)
   const {reviews = []} = data || {}
   const showLoader = isLoading || isFetching
 

@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import {useEffect} from 'react'
-import {closeCart, getCartState} from '../store/slices/cartReducer'
+import {closeCart, getCartState} from '../store/slices/cartSlice'
 import {useDispatch, useSelector} from '../store/store'
 import {DIR_PATHS} from '../utils/constants'
 import {cn} from '../utils/helpers'

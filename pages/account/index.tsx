@@ -1,9 +1,6 @@
 import {GetStaticProps, NextPage} from 'next'
-import UpdateProfileForm from '../../components/forms/UpdateProfile'
-import Booting from '../../components/elements/Booting'
-import Hero from '../../components/elements/Hero'
-import {getAuthState} from '../../store/slices/authReducer'
-import {useSelector} from '../../store/store'
+import UpdateProfileForm from '../../components/account/UpdateProfileForm'
+import Hero from '../../components/ui/Hero'
 import {NextSeo} from 'next-seo'
 
 const css = {
@@ -11,13 +8,11 @@ const css = {
 }
 
 const AccountPage: NextPage = () => {
-  const {booted} = useSelector(getAuthState)
-
   return (
     <div className={css.main}>
       <NextSeo title="My Account" />
       <Hero title="My Account" />
-      {booted ? <UpdateProfileForm /> : <Booting />}
+      <UpdateProfileForm />
     </div>
   )
 }
@@ -25,7 +20,7 @@ const AccountPage: NextPage = () => {
 export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
-      withAuth: true
+      withAuth: true,
     },
   }
 }

@@ -1,12 +1,12 @@
-import {useGetProductQuery} from '../../store/api/baseApi'
 import {GetStaticPaths, GetStaticProps, NextPage} from 'next'
-import ProductDescription from '../../components/product/ProductDescription'
-import ProductReviews from '../../components/product/ProductReviews'
-import ProductGallery from '../../components/product/ProductGallery'
-import ProductDetails from '../../components/product/ProductDetails'
 import {NextSeo} from 'next-seo'
+import {useGetProductQuery} from '../../store/api/productsApiSlice'
+import ReviewList from '../../components/reviews/ReviewList'
+import ProductGallery from '../../components/product/ProductGallery'
+import ProductBody from '../../components/product/ProductBody'
+import ProductDescription from '../../components/product/ProductDescription'
 
-interface ProductPageProps {
+interface IProductPageProps {
   id: string
 }
 
@@ -18,10 +18,10 @@ const css = {
   body: 'max-w-2xl mx-auto w-full',
 }
 
-const ProductPage: NextPage<ProductPageProps> = ({id}) => {
+const ProductPage: NextPage<IProductPageProps> = ({id}) => {
   const {data, isLoading, isFetching} = useGetProductQuery(id)
   const {product} = data || {}
-  const {description, numOfReviews, reviews} = product || {}
+  const {description} = product || {}
   const showLoader = isLoading || isFetching
 
   return (
@@ -34,13 +34,13 @@ const ProductPage: NextPage<ProductPageProps> = ({id}) => {
               <ProductGallery product={product} isLoading={isLoading} />
             </div>
             <div className={css.body}>
-              <ProductDetails product={product} isLoading={isLoading} />
+              <ProductBody product={product} isLoading={isLoading} />
             </div>
           </div>
           {!isLoading && (
             <>
               <ProductDescription description={description} />
-              <ProductReviews product={product} />
+              <ReviewList product={product} />
             </>
           )}
         </div>

@@ -2,9 +2,9 @@ import {NextSeo} from 'next-seo'
 import {GetStaticProps} from 'next'
 import {useState} from 'react'
 import {ArrowRightIcon} from '@heroicons/react/outline'
-import DataTable from '../../../components/DataTable'
-import Paginate from '../../../components/Paginate'
-import {useGetAllProductsQuery} from '../../../store/api/baseApi'
+import DataTable from '../../../components/ui/DataTable'
+import Paginate from '../../../components/ui/Paginate'
+import {useGetProductsQuery} from '../../../store/api/productsApiSlice'
 import {IProductFilter} from '../../../types/product'
 import {numToPrice} from '../../../utils/helpers'
 import Link from 'next/link'
@@ -67,7 +67,7 @@ const QUERY_FILTER = {
 
 const AdminProducts = () => {
   const [filter, setFilter] = useState<IProductFilter>(QUERY_FILTER)
-  const {data, isLoading, isFetching} = useGetAllProductsQuery(filter)
+  const {data, isLoading, isFetching} = useGetProductsQuery(filter)
   const {pages = 1, page = 1, products = []} = data || {}
   const showLoader = isLoading || isFetching
 

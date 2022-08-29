@@ -1,7 +1,7 @@
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
-import AboutSection from '../components/elements/AboutSection'
-import Hero from '../components/elements/Hero'
+import AboutSection from '../components/ui/AboutSection'
+import Hero from '../components/ui/Hero'
 
 const css = {
   main: 'max-w-site px-4 mx-auto pb-12 sm:pb-16 space-y-16',

@@ -6,7 +6,7 @@ import 'swiper/css/pagination'
 import {IProduct} from '../../types/product'
 import Image from 'next/future/image'
 
-interface ProductGalleryProps {
+interface IProductGalleryProps {
   product?: IProduct
   isLoading?: boolean
 }
@@ -24,25 +24,23 @@ const css = {
   imageThumbNormal: 'opacity-40 hover:opacity-100 duration-250',
 }
 
-const ProductGalleryLoading = () => (
-  <div className={css.slide}>
-    <div className="absolute inset-0 bg-gray-200 overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent" />
-  </div>
-)
-
-const ProductGalleryEmpty = () => (
-  <div className={css.slide}>
-    <div className="absolute inset-0 overflow-hidden bg-gray-200" />
-  </div>
-)
-
-const ProductGallery = ({product, isLoading = false}: ProductGalleryProps) => {
+const ProductGallery = ({product, isLoading = false}: IProductGalleryProps) => {
   const {images} = product || {}
+
   if (isLoading) {
-    return <ProductGalleryLoading />
+    return (
+      <div className={css.slide}>
+        <div className="absolute inset-0 bg-gray-200 overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent" />
+      </div>
+    )
   }
+
   if (!product || !images || images?.length === 0) {
-    return <ProductGalleryEmpty />
+    return (
+      <div className={css.slide}>
+        <div className="absolute inset-0 overflow-hidden bg-gray-200" />
+      </div>
+    )
   }
 
   return (

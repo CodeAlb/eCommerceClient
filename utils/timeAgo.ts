@@ -1,9 +1,5 @@
-import TimeAgo, {DateInput} from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en.json'
+import {formatDistance} from 'date-fns'
 
-TimeAgo.addLocale(en)
-TimeAgo.setDefaultLocale('en')
-
-export const timeAgo = (time: DateInput) => {
-  return new TimeAgo('en').format(new Date(time))
+export const timeAgo = (date: Date) => {
+  return formatDistance(new Date(date), new Date(), {addSuffix: true})
 }

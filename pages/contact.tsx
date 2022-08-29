@@ -1,7 +1,7 @@
 import {LocationMarkerIcon, MailIcon, PhoneIcon} from '@heroicons/react/outline'
 import {NextPage} from 'next'
 import {NextSeo} from 'next-seo'
-import Hero from '../components/elements/Hero'
+import Hero from '../components/ui/Hero'
 import Input from '../components/fields/Input'
 import Textarea from '../components/fields/Textarea'
 

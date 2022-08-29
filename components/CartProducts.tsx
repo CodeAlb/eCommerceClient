@@ -5,7 +5,7 @@ import {
   deleteCartItem,
   getCartState,
   incrementAmount,
-} from '../store/slices/cartReducer'
+} from '../store/slices/cartSlice'
 import {useDispatch, useSelector} from '../store/store'
 import {cn} from '../utils/helpers'
 import Image from 'next/future/image'
